@@ -1,0 +1,70 @@
+## Build results
+bin/
+obj/
+out/
+
+## User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## VS Code
+.vscode/
+.history/
+
+## Visual Studio
+.vs/
+*.dbmdl
+*.psess
+*.vsp
+*.vspx
+*.tmp
+*.log
+*.tlog
+*.ide
+
+## ASP.NET runtime files
+*.pidb
+*.svclog
+*.pidb
+*.sdf
+
+## DotCover
+.idea/
+*.dotCover
+
+## Rider
+.idea/
+*.sln.iml
+
+## NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+## EF Core Migrations cache
+Migrations/
+
+## Static web assets cache
+wwwroot/lib/
+**/wwwroot/lib/
+
+## Logs
+*.log
+
+## OS files
+.DS_Store
+Thumbs.db
+
+## Environment
+.env
+.env.*
+appsettings.*.local.json
+
+## Others
+*.bak
