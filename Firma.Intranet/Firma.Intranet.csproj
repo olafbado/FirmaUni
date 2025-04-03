@@ -25,9 +25,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Firma.Data\Firma.Data.csproj" />
   </ItemGroup>
-  <Target Name="CopySharedStyles" AfterTargets="Build">
-  <Copy SourceFiles="..\Firma.Data\Styles\shared.css"
-        DestinationFolder="$(ProjectDir)wwwroot\css" />
-</Target>
+  
 
 </Project>
