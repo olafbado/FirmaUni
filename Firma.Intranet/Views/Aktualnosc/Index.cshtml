@@ -1,49 +1,38 @@
 ﻿@model IEnumerable<Firma.Data.Data.CMS.Aktualnosc>
 
 @{
-    ViewData["Title"] = "Aktualnosci";
+    ViewData["Title"] = "Aktualności";
 }
-<p>
-    <a asp-action="Create">Dodaj</a>
-</p>
-<table class="table">
-    <thead>
+
+<h1 class="mb-4">Lista aktualności</h1>
+
+<a asp-action="Create" class="btn btn-primary mb-3"><i class="bi bi-plus-circle"></i> Dodaj aktualność</a>
+
+<table class="table table-hover table-bordered table-striped shadow-sm">
+    <thead class="table-dark">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.LinkTytul)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tytul)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tresc)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Pozycja)
-            </th>
-            <th></th>
+            <th>Tytuł</th>
+            <th>Pozycja</th>
+            <th>Link</th>
+            <th>Akcja</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.LinkTytul)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tytul)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tresc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pozycja)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdAktualnosci">+</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdAktualnosci">-</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Tytul</td>
+                <td>@item.Pozycja</td>
+                <td>@item.LinkTytul</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdAktualnosci" class="btn btn-olive btn-sm me-1">
+                    <i class="bi bi-pencil-square"></i> Edytuj</a>
+                    <a asp-action="Details" asp-route-id="@item.IdAktualnosci" class="btn btn-slate btn-sm me-1">
+                    <i class="bi bi-info-circle"></i> Szczegóły</a>
+                    <a asp-action="Delete" asp-route-id="@item.IdAktualnosci" class="btn btn-danger btn-sm me-1">
+                    <i class="bi bi-trash"></i> Usuń</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

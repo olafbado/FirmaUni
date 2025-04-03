@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "rDsft+xiahqp79SOMHJ1ZBLxC34Y7pXpEyrIX+nfk1M=",
+  "Hash": "2q2VPdPVU0h62uKh0s0ZB2EO0NScZZycYgpJwi1Hf48=",
   "Source": "Firma.Intranet",
   "BasePath": "_content/Firma.Intranet",
   "Mode": "Default",
@@ -53,6 +53,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.Intranet/obj/Debug/net8.0/scopedcss/projectbundle/Firma.Intranet.bundle.scp.css"
+    },
+    {
+      "Identity": "/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.Intranet/wwwroot/css/shared.css",
+      "SourceId": "Firma.Intranet",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.Intranet/wwwroot/",
+      "BasePath": "_content/Firma.Intranet",
+      "RelativePath": "css/shared.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/shared.css"
     },
     {
       "Identity": "/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.Intranet/wwwroot/css/site.css",

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "wy2Bpfa1I8NvFnrDAuablF5VnEFeLTCgTaLTj9YGgB8=",
+  "Hash": "QFofekWt7AKUcgOPg2bUe3ABL7HF2kn7QMOn8Vp3vJM=",
   "Source": "Firma.PortalWWW",
   "BasePath": "_content/Firma.PortalWWW",
   "Mode": "Default",
@@ -110,6 +110,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/content/3.png"
+    },
+    {
+      "Identity": "/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.PortalWWW/wwwroot/css/shared.css",
+      "SourceId": "Firma.PortalWWW",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.PortalWWW/wwwroot/",
+      "BasePath": "_content/Firma.PortalWWW",
+      "RelativePath": "css/shared.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/shared.css"
     },
     {
       "Identity": "/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.PortalWWW/wwwroot/css/site.css",

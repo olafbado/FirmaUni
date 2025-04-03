@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets/content/3.png"
     },
     {
+      "Id": "/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.PortalWWW/wwwroot/css/shared.css",
+      "PackagePath": "staticwebassets/css/shared.css"
+    },
+    {
       "Id": "/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.PortalWWW/wwwroot/css/site.css",
       "PackagePath": "staticwebassets/css/site.css"
     },

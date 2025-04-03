@@ -1,8 +1,55 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Panel pracownika";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container py-5">
+    <h1 class="text-center mb-5">Witamy w intranecie firmy!</h1>
+
+    <!-- Sekcja 1 -->
+    <div class="row align-items-center mb-5">
+        <div class="col-md-6 mb-3 mb-md-0">
+            <div class="bg-secondary" style="width: 100%; height: 250px; border-radius: 10px;"></div>
+        </div>
+        <div class="col-md-6">
+            <h2>Strony</h2>
+            <p>Zarządzaj podstronami widocznymi w Portalu – zmieniaj treści, dodawaj sekcje i kontroluj ich kolejność.</p>
+            <a href="/Strona" class="btn btn-outline-primary mt-2">Zarządzaj stronami</a>
+        </div>
+    </div>
+
+    <!-- Sekcja 2 -->
+    <div class="row align-items-center flex-md-row-reverse mb-5">
+        <div class="col-md-6 mb-3 mb-md-0">
+            <div class="bg-secondary" style="width: 100%; height: 250px; border-radius: 10px;"></div>
+        </div>
+        <div class="col-md-6">
+            <h2>Aktualności</h2>
+            <p>Twórz i publikuj najnowsze informacje z życia firmy. Wszystkie nowinki trafiają na główną stronę Portalu.</p>
+            <a href="/Aktualnosc" class="btn btn-outline-primary mt-2">Zarządzaj aktualnościami</a>
+        </div>
+    </div>
+
+    <!-- Sekcja 3 -->
+    <div class="row align-items-center mb-5">
+        <div class="col-md-6 mb-3 mb-md-0">
+            <div class="bg-secondary" style="width: 100%; height: 250px; border-radius: 10px;"></div>
+        </div>
+        <div class="col-md-6">
+            <h2>Rodzaje</h2>
+            <p>Utwórz kategorie produktów – dzięki nim uporządkujesz ofertę sklepu i ułatwisz klientom nawigację.</p>
+            <a href="/Rodzaj" class="btn btn-outline-primary mt-2">Zarządzaj kategoriami</a>
+        </div>
+    </div>
+
+    <!-- Sekcja 4 -->
+    <div class="row align-items-center flex-md-row-reverse mb-5">
+        <div class="col-md-6 mb-3 mb-md-0">
+            <div class="bg-secondary" style="width: 100%; height: 250px; border-radius: 10px;"></div>
+        </div>
+        <div class="col-md-6">
+            <h2>Towary</h2>
+            <p>Dodawaj nowe produkty, przypisuj do kategorii, dodawaj ceny i opisy. Całość będzie widoczna w Portalu WWW.</p>
+            <a href="/Towar" class="btn btn-outline-primary mt-2">Zarządzaj produktami</a>
+        </div>
+    </div>
 </div>
