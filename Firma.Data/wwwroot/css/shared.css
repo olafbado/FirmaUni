@@ -1,0 +1,22 @@
+:root {
+  --primary-color: #0d6efd;
+  --secondary-color: #6c757d;
+  --highlight: #f8f9fa;
+  --danger: #dc3545;
+  --success: #198754;
+  --font-main: "Segoe UI", sans-serif;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--highlight);
+}
+
+.navbar-brand {
+  font-weight: bold;
+}
+
+footer {
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+}

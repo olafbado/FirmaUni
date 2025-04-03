@@ -1,0 +1,135 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Firma.Intranet
+build_property.RootNamespace = Firma.Intranet
+build_property.ProjectDir = /Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.Intranet/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.Intranet
+build_property._RazorSourceGeneratorDebug = 
+
+[/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.Intranet/Views/Aktualnosc/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWt0dWFsbm9zYy9DcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.Intranet/Views/Aktualnosc/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWt0dWFsbm9zYy9EZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.Intranet/Views/Aktualnosc/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWt0dWFsbm9zYy9EZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.Intranet/Views/Aktualnosc/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWt0dWFsbm9zYy9FZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.Intranet/Views/Aktualnosc/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWt0dWFsbm9zYy9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.Intranet/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.Intranet/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.Intranet/Views/Rodzaj/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUm9kemFqL0NyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.Intranet/Views/Rodzaj/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUm9kemFqL0RlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.Intranet/Views/Rodzaj/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUm9kemFqL0RldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.Intranet/Views/Rodzaj/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUm9kemFqL0VkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.Intranet/Views/Rodzaj/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUm9kemFqL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.Intranet/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.Intranet/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.Intranet/Views/Strona/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3Ryb25hL0NyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.Intranet/Views/Strona/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3Ryb25hL0RlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.Intranet/Views/Strona/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3Ryb25hL0RldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.Intranet/Views/Strona/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3Ryb25hL0VkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.Intranet/Views/Strona/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3Ryb25hL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.Intranet/Views/Towar/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVG93YXIvQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.Intranet/Views/Towar/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVG93YXIvRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.Intranet/Views/Towar/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVG93YXIvRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.Intranet/Views/Towar/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVG93YXIvRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.Intranet/Views/Towar/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVG93YXIvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.Intranet/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.Intranet/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/olaf/Documents/Studia/SEM_6/webowe/Firma/Firma.Intranet/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-jsa951w66e
