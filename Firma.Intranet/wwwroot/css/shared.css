@@ -1,34 +1,23 @@
+/* 🎨 Zmienne kolorystyczne */
 :root {
-  --primary-color: #0d6efd;
-  --secondary-color: #6c757d;
-  --highlight: #f8f9fa;
-  --danger: #dc3545;
-  --success: #198754;
+  --main-bg: #dce7e1;
+  --primary-color: #214734;
+  --accent-color: #183527;
+  --accent-hover: #0f231a;
+  --text-color: #1b1b1b;
+  --danger-color: #dc3545;
+  --success-color: #198754;
   --font-main: "Segoe UI", sans-serif;
 }
 
+/* 🧱 Podstawowe style */
 body {
   font-family: var(--font-main);
-  background-color: var(--highlight);
-}
-
-.navbar-brand {
-  font-weight: bold;
-}
-
-footer {
-  font-size: 0.9rem;
-  color: var(--secondary-color);
-}
-
-html,
-body {
+  background-color: var(--main-bg);
+  color: var(--text-color);
   height: 100%;
   margin: 0;
   padding: 0;
-}
-
-body {
   display: flex;
   flex-direction: column;
 }
@@ -37,13 +26,23 @@ main {
   flex: 1;
 }
 
-footer {
-  background-color: #f8f9fa;
-  padding: 1rem 0;
-  text-align: center;
-  border-top: 1px solid #ddd;
+/* 🧭 Nawigacja */
+.navbar {
+  background-color: var(--primary-color) !important;
 }
 
+.navbar .navbar-brand,
+.navbar .nav-link {
+  color: white !important;
+}
+
+.nav-link.active {
+  background-color: var(--accent-color);
+  border-radius: 0.375rem;
+  color: white !important;
+}
+
+/* 📄 Tabele */
 .table {
   border-collapse: collapse;
   width: 100%;
@@ -61,6 +60,13 @@ footer {
   font-weight: bold;
 }
 
+@media (max-width: 768px) {
+  .table {
+    font-size: 0.9rem;
+  }
+}
+
+/* 🧾 Nagłówki */
 .page-header {
   margin-top: 2rem;
   margin-bottom: 1rem;
@@ -69,31 +75,7 @@ footer {
   padding-bottom: 0.5rem;
 }
 
-.btn-primary,
-.btn-danger,
-.btn-secondary {
-  margin-right: 0.5rem;
-}
-
-@media (max-width: 768px) {
-  .table {
-    font-size: 0.9rem;
-  }
-}
-
-:root {
-  --main-bg: #dce7e1;
-  --primary-color: #214734;
-  --accent-color: #183527;
-  --accent-hover: #0f231a;
-  --text-color: #1b1b1b;
-}
-
-body {
-  background-color: var(--main-bg);
-  color: var(--text-color);
-}
-
+/* 🔘 Przyciski */
 .btn-primary {
   background-color: var(--primary-color);
   border-color: var(--primary-color);
@@ -102,37 +84,6 @@ body {
 .btn-primary:hover {
   background-color: var(--accent-color);
   border-color: var(--accent-hover);
-}
-
-.navbar {
-  background-color: var(--primary-color) !important;
-}
-
-.navbar .navbar-brand,
-.navbar .nav-link {
-  color: white !important;
-}
-
-footer {
-  background-color: var(--primary-color);
-  color: white;
-  padding: 1rem 0;
-  text-align: center;
-  margin-top: auto;
-}
-
-.btn-outline-primary {
-  color: var(--primary-color);
-  border-color: var(--primary-color);
-  background-color: transparent;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.btn-outline-primary:hover,
-.btn-outline-primary:focus,
-.btn-outline-primary:active {
-  background-color: var(--primary-color);
-  color: white;
 }
 
 .btn-outline-primary {
@@ -149,10 +100,11 @@ footer {
   background-color: var(--primary-color);
   color: white;
   border-color: var(--primary-color);
-  box-shadow: none; /* usuwa niebieski 'glow' */
-  outline: none; /* usuwa domyślny niebieski outline */
+  box-shadow: none;
+  outline: none;
 }
 
+/* Dodatkowe style przycisków */
 .btn-olive {
   background-color: #6b8e23;
   color: white;
@@ -173,8 +125,43 @@ footer {
   color: white;
 }
 
-.nav-link.active {
-  background-color: hsl(134, 26.2%, 12.7%); /* ciemnozielony */
-  border-radius: 0.375rem;
-  color: white !important;
+.btn-primary,
+.btn-danger,
+.btn-secondary {
+  margin-right: 0.5rem;
+}
+
+/* 🦶 Stopka */
+footer {
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 0.9rem;
+  padding: 1rem 0;
+  text-align: center;
+  margin-top: auto;
+}
+
+footer a {
+  color: #d1e7dd;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: white;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }

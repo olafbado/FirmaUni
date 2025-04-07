@@ -1,24 +1,153 @@
+/* 🎨 Zmienne kolorystyczne */
 :root {
-  --primary-color: #0d6efd;
-  --secondary-color: #6c757d;
-  --highlight: #f8f9fa;
-  --danger: #dc3545;
-  --success: #198754;
+  --main-bg: #dce7e1;
+  --primary-color: #214734;
+  --accent-color: #183527;
+  --accent-hover: #0f231a;
+  --text-color: #1b1b1b;
+  --danger-color: #dc3545;
+  --success-color: #198754;
   --font-main: "Segoe UI", sans-serif;
 }
 
+/* 🧱 Podstawowe style */
 body {
   font-family: var(--font-main);
-  background-color: var(--highlight);
+  background-color: var(--main-bg);
+  color: var(--text-color);
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
-.navbar-brand {
+main {
+  flex: 1;
+}
+
+/* 🧭 Nawigacja */
+.navbar {
+  background-color: var(--primary-color) !important;
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link {
+  color: white !important;
+}
+
+.nav-link.active {
+  background-color: var(--accent-color);
+  border-radius: 0.375rem;
+  color: white !important;
+}
+
+/* 📄 Tabele */
+.table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table th,
+.table td {
+  padding: 12px;
+  border: 1px solid #dee2e6;
+  text-align: left;
+}
+
+.table thead {
+  background-color: #f1f1f1;
   font-weight: bold;
 }
 
+@media (max-width: 768px) {
+  .table {
+    font-size: 0.9rem;
+  }
+}
+
+/* 🧾 Nagłówki */
+.page-header {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.75rem;
+  border-bottom: 2px solid #eaeaea;
+  padding-bottom: 0.5rem;
+}
+
+/* 🔘 Przyciski */
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-color);
+  border-color: var(--accent-hover);
+}
+
+.btn-outline-primary {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  background-color: transparent;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-primary:active {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+  box-shadow: none;
+  outline: none;
+}
+
+/* Dodatkowe style przycisków */
+.btn-olive {
+  background-color: #6b8e23;
+  color: white;
+}
+
+.btn-olive:hover {
+  background-color: #5a761d;
+  color: white;
+}
+
+.btn-slate {
+  background-color: #607d8b;
+  color: white;
+}
+
+.btn-slate:hover {
+  background-color: #506b75;
+  color: white;
+}
+
+.btn-primary,
+.btn-danger,
+.btn-secondary {
+  margin-right: 0.5rem;
+}
+
+/* 🦶 Stopka */
 footer {
+  background-color: var(--primary-color);
+  color: white;
   font-size: 0.9rem;
-  color: var(--secondary-color);
+  padding: 1rem 0;
+  text-align: center;
+  margin-top: auto;
+}
+
+footer a {
+  color: #d1e7dd;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: white;
 }
 
 html,
@@ -37,46 +166,126 @@ main {
   flex: 1;
 }
 
-footer {
-  background-color: #f8f9fa;
-  padding: 1rem 0;
+/* PORTAL STYLES */
+.portal {
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f2f7f5;
+  color: #212529;
+}
+
+/* Navbar */
+.portal .navbar {
+  background-color: var(--primary-color);
+  padding: 1rem 2rem;
+  border-radius: 0 0 1rem 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.portal .navbar .nav-link {
+  color: white !important;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s;
+}
+
+.portal .navbar .nav-link:hover,
+.portal .navbar .nav-link.active {
+  background-color: var(--accent-color);
+}
+
+/* Buttons */
+.portal .btn {
+  border-radius: 0.75rem;
+  padding: 0.5rem 1.25rem;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.portal .btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.portal .btn-primary:hover {
+  background-color: var(--accent-hover);
+}
+
+/* Hero section on homepage */
+.portal .hero {
+  background: linear-gradient(to right, #e6f0ec, #f4f9f7);
+  padding: 3rem 2rem;
+  border-radius: 1rem;
   text-align: center;
-  border-top: 1px solid #ddd;
+  margin-bottom: 2rem;
 }
 
-.table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-.table th,
-.table td {
-  padding: 12px;
-  border: 1px solid #dee2e6;
-  text-align: left;
-}
-
-.table thead {
-  background-color: #f1f1f1;
-  font-weight: bold;
-}
-
-.page-header {
-  margin-top: 2rem;
+.portal .hero h1 {
+  font-size: 2.5rem;
   margin-bottom: 1rem;
-  font-size: 1.75rem;
-  border-bottom: 2px solid #eaeaea;
-  padding-bottom: 0.5rem;
 }
 
-.btn-primary,
-.btn-danger,
-.btn-secondary {
-  margin-right: 0.5rem;
+.portal .hero p {
+  font-size: 1.2rem;
+  color: #555;
 }
 
-@media (max-width: 768px) {
-  .table {
-    font-size: 0.9rem;
-  }
+/* Footer */
+.portal footer {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 2rem 1rem;
+  margin-top: auto;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+.portal footer a {
+  color: #d9e7e3;
+  text-decoration: none;
+}
+
+.portal footer a:hover {
+  color: white;
+}
+
+.placeholder-box {
+  width: 100%;
+  height: 250px;
+  background-color: #d6d6d6;
+  border-radius: 0.75rem;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.card-section {
+  background: white;
+  border-radius: 0.75rem;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.card-section:hover {
+  transform: translateY(-4px);
+}
+
+.hero {
+  background: linear-gradient(135deg, #e0f2f1, #ffffff);
+  padding: 4rem 2rem;
+  border-radius: 0.5rem;
+}
+
+.hero {
+  background: linear-gradient(135deg, #e7f3ec, #ffffff);
+  padding: 5rem 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.image-placeholder {
+  background-color: #d2d2d2;
+  height: 250px;
+  border-radius: 1rem;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1);
 }
