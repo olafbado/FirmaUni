@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Firma.PortalWWW.Models;
 
 [Route("")]
 public class HomeController : Controller
