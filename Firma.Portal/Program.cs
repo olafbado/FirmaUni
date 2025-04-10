@@ -1,35 +1,38 @@
-﻿using Firma.Data.Data;
+﻿using Firma.Data.Data; // dostęp do DbContext z Firma.Data
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
-// builder.Services.AddDbContext<FirmaContext>(options =>
-//     options.UseSqlServer(builder.Configuration.GetConnectionString("FirmaContext") ?? throw new InvalidOperationException("Connection string 'FirmaContext' not found.")));
+
+// Rejestracja DbContext z PostgreSQL
 builder.Services.AddDbContext<FirmaContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("FirmaContext")));
 
-// Add services to the container.
+// Rejestracja MVC (kontrolery + widoki)
 builder.Services.AddControllersWithViews();
+
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+
+// Obsługa błędów w środowisku produkcyjnym
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
+// Obsługa HTTPS i plików statycznych
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+// Routing i autoryzacja
 app.UseRouting();
-
 app.UseAuthorization();
 
+// Domyślny routing
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
 
 app.Run();
