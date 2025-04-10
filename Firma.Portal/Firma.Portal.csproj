@@ -26,5 +26,4 @@
     <ProjectReference Include="..\Firma.Data\Firma.Data.csproj" />
   </ItemGroup>
 
-
 </Project>
