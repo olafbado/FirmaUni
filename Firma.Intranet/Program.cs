@@ -1,39 +1,58 @@
 ﻿using Firma.Data.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+
 var builder = WebApplication.CreateBuilder(args);
-// builder.Services.AddDbContext<FirmaContext>(options =>
-//     options.UseSqlServer(builder.Configuration.GetConnectionString("FirmaContext") ?? throw new InvalidOperationException("Connection string 'FirmaContext' not found.")));
+
+#region 🔧 KONFIGURACJA USŁUG (Dependency Injection)
+
+// Rejestracja kontekstu bazy danych (PostgreSQL) z pliku appsettings.json
 builder.Services.AddDbContext<FirmaContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("FirmaContext")));
-// Add services to the container.
+
+// Dodanie MVC (kontrolery + widoki)
 builder.Services.AddControllersWithViews();
+
+#endregion
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+#region ⚙️ KONFIGURACJA ŚRODOWISKA
+
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+    app.UseExceptionHandler("/Home/Error"); // obsługa błędów w trybie produkcyjnym
+    app.UseHsts(); // wymuszenie HTTPS
 }
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
+#endregion
 
-app.UseRouting();
+#region 🛠️ MIDDLEWARE (kolejność ma znaczenie!)
 
-app.UseAuthorization();
+// Odpowiednik plugów w Phoenix oraz endpoint.ex i router.ex
+app.UseHttpsRedirection();       // przekierowanie na HTTPS
+app.UseStaticFiles();            // obsługa wwwroot/
+app.UseRouting();                // routing MVC
+app.UseAuthorization();          // autoryzacja (opcjonalna, na przyszłość)
 
+#endregion
+
+#region 📍 ROUTING GŁÓWNY (domyślny)
+
+// odpowiednik `scope "/users", AppWeb do` w Phoenix
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+
+#endregion
+
+#region 🌱 SEEDOWANIE DANYCH STARTOWYCH
+
 using (var scope = app.Services.CreateScope())
 {
-    var context = scope.ServiceProvider.GetRequiredService<Firma.Data.Data.FirmaContext>();
+    var context = scope.ServiceProvider.GetRequiredService<FirmaContext>();
 
+    // Strony CMS
     if (!context.Strona.Any())
     {
         context.Strona.AddRange(
@@ -43,6 +62,7 @@ using (var scope = app.Services.CreateScope())
         );
     }
 
+    // Aktualności
     if (!context.Aktualnosc.Any())
     {
         context.Aktualnosc.AddRange(
@@ -52,6 +72,7 @@ using (var scope = app.Services.CreateScope())
         );
     }
 
+    // Rodzaje produktów
     if (!context.Rodzaj.Any())
     {
         context.Rodzaj.AddRange(
@@ -61,6 +82,7 @@ using (var scope = app.Services.CreateScope())
         );
     }
 
+    // Towary
     if (!context.Towar.Any())
     {
         context.Towar.AddRange(
@@ -73,5 +95,6 @@ using (var scope = app.Services.CreateScope())
     context.SaveChanges();
 }
 
+#endregion
 
-app.Run();
+app.Run(); // 🔚 Start aplikacji
