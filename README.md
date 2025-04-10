@@ -1,3 +1,6 @@
+TODO:
+- shared common styles
+
 - Folder wwwroot/ zawiera pliki statyczne typu css, zdjecia, js itp.,
 dzieki czemu latwo beda dostepne w HTML, w Program.cs odpowiada za to
 app.UseStaticFiles();, potem w HTML mozemy uzyc `<link rel="stylesheet" href="~/css/shared.css">`
