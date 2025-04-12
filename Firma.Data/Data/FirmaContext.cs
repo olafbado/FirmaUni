@@ -1,11 +1,6 @@
 ﻿using Firma.Data.Data.CMS;
 using Firma.Data.Data.Sklep;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Firma.Data.Data
 {
@@ -20,5 +15,5 @@ namespace Firma.Data.Data
         public DbSet<Rodzaj> Rodzaj { get; set; } = default!;
         public DbSet<Towar> Towar { get; set; } = default!;
     }
-    
+
 }
