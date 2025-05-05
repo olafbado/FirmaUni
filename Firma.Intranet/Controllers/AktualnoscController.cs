@@ -18,4 +18,3 @@ public class AktualnoscController : Controller
         return View(await _context.Aktualnosc.ToListAsync());
     }
 }
-

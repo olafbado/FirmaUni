@@ -17,5 +17,4 @@ public class StronaController : Controller
     {
         return View(await _context.Strona.ToListAsync());
     }
-
 }

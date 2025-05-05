@@ -18,5 +18,4 @@ public class TowarController : Controller
         var firmaIntranetContext = _context.Towar.Include(t => t.Rodzaj);
         return View(await firmaIntranetContext.ToListAsync());
     }
-
 }
