@@ -32,5 +32,10 @@ namespace Firma.Data.Data.Sklep
         [ForeignKey("Rodzaj")]
         public int IdRodzaju { get; set; }
         public Rodzaj? Rodzaj { get; set; }
+
+        [Required(ErrorMessage = "Podaj ilość dostępną w magazynie")]
+        [Range(0, int.MaxValue, ErrorMessage = "Ilość nie może być ujemna")]
+        [Display(Name = "Ilość w magazynie")]
+        public int Ilosc { get; set; } = 0;
     }
 }
