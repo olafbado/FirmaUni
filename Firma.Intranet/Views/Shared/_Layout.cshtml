@@ -44,10 +44,6 @@
                             asp-controller="Koszyk" asp-action="Index">Koszyki</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Opinia" ? "active" : "")"
-                            asp-controller="Opinia" asp-action="Index">Opinie</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Uzytkownik" ? "active" : "")"
                             asp-controller="Uzytkownik" asp-action="Index">Użytkownicy</a>
                     </li>
