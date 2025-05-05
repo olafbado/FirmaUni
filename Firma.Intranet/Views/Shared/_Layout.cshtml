@@ -35,7 +35,24 @@
                         <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Towar" ? "active" : "")"
                             asp-controller="Towar" asp-action="Index">Towary</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Zamowienie" ? "active" : "")"
+                            asp-controller="Zamowienie" asp-action="Index">Zamówienia</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Koszyk" ? "active" : "")"
+                            asp-controller="Koszyk" asp-action="Index">Koszyki</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Opinia" ? "active" : "")"
+                            asp-controller="Opinia" asp-action="Index">Opinie</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Uzytkownik" ? "active" : "")"
+                            asp-controller="Uzytkownik" asp-action="Index">Użytkownicy</a>
+                    </li>
                 </ul>
+
                 <span class="navbar-text">Zalogowany: admin</span>
             </div>
         </div>
