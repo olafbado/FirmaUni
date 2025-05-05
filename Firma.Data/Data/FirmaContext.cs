@@ -13,4 +13,7 @@ public class FirmaContext : DbContext
     public DbSet<Strona> Strona { get; set; } = default!;
     public DbSet<Rodzaj> Rodzaj { get; set; } = default!;
     public DbSet<Towar> Towar { get; set; } = default!;
+    public DbSet<Uzytkownik> Uzytkownik { get; set; } = default!;
+    public DbSet<Koszyk> Koszyk { get; set; } = default!;
+    public DbSet<Zamowienie> Zamowienie { get; set; } = default!;
 }
