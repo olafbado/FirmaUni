@@ -18,8 +18,6 @@ namespace Firma.Data.Data.Sklep
 
         public string Opis { get; set; } = string.Empty;
 
-        //to jest obsługa relacji 1 do wielu (Towar ma jeden rodzaj, Rodzaj ma wiele towarow danego rodzaju)
-        //po stronie wiele - Rodzaj ma wiele towarow danego rodzaju
         public ICollection<Towar> Towar { get; } = new List<Towar>();
     }
 }
