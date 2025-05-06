@@ -26,10 +26,10 @@
                 <td>@item.Nazwisko</td>
                 <td>@item.Email</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-olive btn-sm me-1">
+                    <a asp-action="Edit" asp-route-id="@item.UzytkownikId" class="btn btn-olive btn-sm me-1">
                         <i class="bi bi-pencil-square"></i> Edytuj
                     </a>
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">
+                    <a asp-action="Delete" asp-route-id="@item.UzytkownikId" class="btn btn-danger btn-sm">
                         <i class="bi bi-trash"></i> Usuń
                     </a>
                 </td>
