@@ -5,7 +5,7 @@ namespace Firma.Data.Data.Sklep
     public class Uzytkownik
     {
         [Key]
-        public string Id { get; set; } = Guid.NewGuid().ToString();
+        public string UzytkownikId { get; set; } = Guid.NewGuid().ToString();
 
         [Required]
         [MaxLength(100)]
