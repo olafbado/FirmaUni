@@ -2,19 +2,16 @@
 @{
     ViewData["Title"] = "Koszyki";
 }
-
-<h1 class="mb-4">Lista koszyków</h1>
-
+<h1>Lista koszyków</h1>
 <a asp-action="Create" class="btn btn-primary mb-3">
-    <i class="bi bi-plus-circle"></i> Dodaj nowy koszyk
+    <i class="bi bi-plus-circle"></i> Nowy koszyk
 </a>
-
-<table class="table table-striped table-bordered align-middle">
+<table class="table table-bordered table-striped">
     <thead class="table-dark">
         <tr>
-            <th>ID</th>
             <th>Data utworzenia</th>
             <th>Użytkownik</th>
+            <th>Liczba pozycji</th>
             <th>Akcje</th>
         </tr>
     </thead>
@@ -22,19 +19,16 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.IdKoszyka</td>
                 <td>@item.DataUtworzenia.ToString("g")</td>
-                <td>@item.UzytkownikId</td>
+                <td>@item.Uzytkownik?.Imie @item.Uzytkownik?.Nazwisko</td>
+                <td>@item.Pozycje.Count</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.IdKoszyka" class="btn btn-olive btn-sm me-1">
-                        <i class="bi bi-pencil-square"></i> Edytuj
-                    </a>
-                    <a asp-action="Details" asp-route-id="@item.IdKoszyka" class="btn btn-slate btn-sm me-1">
-                        <i class="bi bi-info-circle"></i> Szczegóły
-                    </a>
-                    <a asp-action="Delete" asp-route-id="@item.IdKoszyka" class="btn btn-danger btn-sm me-1">
-                        <i class="bi bi-trash"></i> Usuń
-                    </a>
+                    <a asp-action="Edit" asp-route-id="@item.IdKoszyka" class="btn btn-sm btn-olive me-1">Edytuj</a>
+                    <a asp-action="Details" asp-route-id="@item.IdKoszyka" class="btn btn-sm btn-slate me-1">Szczegóły</a>
+                    <form asp-action="Delete" asp-route-id="@item.IdKoszyka" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-sm btn-danger"
+                            onclick="return confirm('Na pewno usunąć?')">Usuń</button>
+                    </form>
                 </td>
             </tr>
         }

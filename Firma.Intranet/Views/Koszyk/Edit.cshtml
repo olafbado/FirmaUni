@@ -1,0 +1,56 @@
+@model Firma.Intranet.Models.KoszykViewModel
+@{
+    ViewData["Title"] = "Edycja koszyka";
+    var uzytkownicy = ViewData["Uzytkownicy"] as List<Firma.Data.Data.Sklep.Uzytkownik>;
+}
+
+<h1>Edycja koszyka</h1>
+
+<form asp-action="Edit" asp-route-id="@Model.IdKoszyka" method="post">
+    <input type="hidden" asp-for="IdKoszyka" />
+
+    <div class="mb-3">
+        <label asp-for="UzytkownikId" class="form-label">Użytkownik</label>
+        <select asp-for="UzytkownikId" class="form-select" required>
+            <option value="">-- Wybierz użytkownika --</option>
+            @foreach (var u in uzytkownicy!)
+            {
+                <option value="@u.UzytkownikId" selected="@(Model.UzytkownikId == u.UzytkownikId)">
+                    @u.Imie @u.Nazwisko
+                </option>
+            }
+        </select>
+    </div>
+
+    <h4>Pozycje koszyka</h4>
+    <table class="table table-bordered align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>Towar</th>
+                <th>Cena</th>
+                <th>Ilość</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Pozycje.Count; i++)
+            {
+                <tr>
+                    <td>
+                        @Model.Pozycje[i].TowarNazwa
+                        <input type="hidden" name="Pozycje[@i].TowarId" value="@Model.Pozycje[i].TowarId" />
+                        <input type="hidden" name="Pozycje[@i].TowarNazwa" value="@Model.Pozycje[i].TowarNazwa" />
+                        <input type="hidden" name="Pozycje[@i].CenaJednostkowa" value="@Model.Pozycje[i].CenaJednostkowa" />
+                    </td>
+                    <td>@Model.Pozycje[i].CenaJednostkowa.ToString("C")</td>
+                    <td>
+                        <input name="Pozycje[@i].Ilosc" class="form-control" type="number"
+                            value="@Model.Pozycje[i].Ilosc" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <button type="submit" class="btn btn-primary">Zapisz zmiany</button>
+    <a asp-action="Index" class="btn btn-secondary">Anuluj</a>
+</form>

@@ -1,0 +1,25 @@
+@model Firma.Data.Data.Sklep.Koszyk
+@{
+    ViewData["Title"] = "Szczegóły koszyka";
+}
+<h1>Szczegóły koszyka</h1>
+<div class="mb-3"><strong>Data utworzenia:</strong> @Model.DataUtworzenia.ToString("g")</div>
+<div class="mb-3"><strong>Użytkownik:</strong> @Model.Uzytkownik?.Imie @Model.Uzytkownik?.Nazwisko</div>
+<h4>Pozycje</h4>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Towar</th>
+            <th>Ilość</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model.Pozycje)
+        {
+            <tr>
+                <td>@p.Towar?.Nazwa</td>
+                <td>@p.Ilosc</td>
+            </tr>
+        }
+    </tbody>
+</table>
