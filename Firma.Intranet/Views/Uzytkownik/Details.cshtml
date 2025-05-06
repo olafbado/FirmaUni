@@ -1,0 +1,24 @@
+@model Firma.Data.Data.Sklep.Uzytkownik
+@{
+    ViewData["Title"] = "Szczegóły użytkownika";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Imię</th>
+        <td>@Model.Imie</td>
+    </tr>
+    <tr>
+        <th>Nazwisko</th>
+        <td>@Model.Nazwisko</td>
+    </tr>
+    <tr>
+        <th>Email</th>
+        <td>@Model.Email</td>
+    </tr>
+</table>
+
+<a asp-action="Edit" asp-route-id="@Model.UzytkownikId" class="btn btn-olive">Edytuj</a>
+<a asp-action="Index" class="btn btn-secondary">Powrót</a>

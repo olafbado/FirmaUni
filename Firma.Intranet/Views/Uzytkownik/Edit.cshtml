@@ -1,0 +1,36 @@
+@model Firma.Data.Data.Sklep.Uzytkownik
+@{
+    ViewData["Title"] = ViewContext.RouteData.Values["action"]!.ToString() == "Edit"
+    ? "Edytuj użytkownika"
+    : "Dodaj użytkownika";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="@ViewContext.RouteData.Values["action"]" method="post">
+    <input type="hidden" asp-for="UzytkownikId" />
+    <div class="mb-3">
+        <label asp-for="Imie" class="form-label"></label>
+        <input asp-for="Imie" class="form-control" />
+        <span asp-validation-for="Imie" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Nazwisko" class="form-label"></label>
+        <input asp-for="Nazwisko" class="form-control" />
+        <span asp-validation-for="Nazwisko" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Zapisz</button>
+    <a asp-action="Index" class="btn btn-secondary">Anuluj</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
