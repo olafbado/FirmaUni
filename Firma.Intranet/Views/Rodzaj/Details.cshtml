@@ -1,0 +1,16 @@
+@model Firma.Data.Data.Sklep.Rodzaj
+@{
+    ViewData["Title"] = "Szczegóły rodzaju";
+}
+
+<h1 class="mb-4">Szczegóły rodzaju</h1>
+
+<div class="mb-3">
+    <strong>Nazwa:</strong> @Model.Nazwa
+</div>
+
+<div class="mb-3">
+    <strong>Opis:</strong> @Model.Opis
+</div>
+
+<a asp-action="Index" class="btn btn-secondary">Powrót</a>
