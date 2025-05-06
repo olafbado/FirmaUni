@@ -1,0 +1,29 @@
+@model Firma.Data.Data.Sklep.Towar
+@{
+    ViewData["Title"] = "Szczegóły towaru";
+}
+
+<h1 class="mb-4">Szczegóły</h1>
+
+<dl class="row">
+    <dt class="col-sm-3">Kod</dt>
+    <dd class="col-sm-9">@Model.Kod</dd>
+
+    <dt class="col-sm-3">Nazwa</dt>
+    <dd class="col-sm-9">@Model.Nazwa</dd>
+
+    <dt class="col-sm-3">Cena</dt>
+    <dd class="col-sm-9">@Model.Cena.ToString("C")</dd>
+
+    <dt class="col-sm-3">Rodzaj</dt>
+    <dd class="col-sm-9">@Model.Rodzaj?.Nazwa</dd>
+
+    <dt class="col-sm-3">Ilość</dt>
+    <dd class="col-sm-9">@Model.Ilosc</dd>
+
+    <dt class="col-sm-3">Opis</dt>
+    <dd class="col-sm-9">@Model.Opis</dd>
+</dl>
+
+<a asp-action="Edit" asp-route-id="@Model.IdTowaru" class="btn btn-olive"><i class="bi bi-pencil-square"></i> Edytuj</a>
+<a asp-action="Index" class="btn btn-secondary">Powrót</a>

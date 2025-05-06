@@ -1,0 +1,51 @@
+@model Firma.Data.Data.Sklep.Towar
+@{
+    ViewData["Title"] = "Dodaj towar";
+    var rodzaje = ViewBag.Rodzaje as List<Firma.Data.Data.Sklep.Rodzaj>;
+}
+
+<h1 class="mb-4">Dodaj towar</h1>
+
+<form asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+    <div class="mb-3">
+        <label asp-for="Kod" class="form-label"></label>
+        <input asp-for="Kod" class="form-control" />
+        <span asp-validation-for="Kod" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Nazwa" class="form-label"></label>
+        <input asp-for="Nazwa" class="form-control" />
+        <span asp-validation-for="Nazwa" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Cena" class="form-label"></label>
+        <input asp-for="Cena" class="form-control" />
+        <span asp-validation-for="Cena" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="FotoUrl" class="form-label"></label>
+        <input asp-for="FotoUrl" class="form-control" />
+        <span asp-validation-for="FotoUrl" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Opis" class="form-label"></label>
+        <textarea asp-for="Opis" class="form-control"></textarea>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Ilosc" class="form-label"></label>
+        <input asp-for="Ilosc" class="form-control" />
+        <span asp-validation-for="Ilosc" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Rodzaj</label>
+        <select asp-for="IdRodzaju" class="form-select"
+            asp-items="@(new SelectList(rodzaje, "IdRodzaju", "Nazwa"))"></select>
+    </div>
+    <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle"></i> Zapisz</button>
+    <a asp-action="Index" class="btn btn-secondary">Anuluj</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
