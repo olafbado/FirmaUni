@@ -1,0 +1,57 @@
+@model Firma.Intranet.Models.ZamowienieViewModel
+@{
+    var uzytkownicy = ViewData["Uzytkownicy"] as List<Firma.Data.Data.Sklep.Uzytkownik>;
+    ViewData["Title"] = "Nowe zamówienie";
+}
+
+<h1>Nowe zamówienie</h1>
+
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label asp-for="UzytkownikId" class="form-label"></label>
+        <select asp-for="UzytkownikId" class="form-select" required>
+            <option value="">-- Wybierz użytkownika --</option>
+            @foreach (var u in uzytkownicy!)
+            {
+                <option value="@u.UzytkownikId">@u.Imie @u.Nazwisko</option>
+            }
+        </select>
+    </div>
+
+    <h4>Pozycje zamówienia</h4>
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Towar</th>
+                <th>Cena</th>
+                <th>Ilość</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Pozycje.Count; i++)
+            {
+                <tr>
+                    <td>
+                        @Model.Pozycje[i].TowarNazwa
+                        <input type="hidden" name="Pozycje[@i].TowarId" value="@Model.Pozycje[i].TowarId" />
+                        <input type="hidden" name="Pozycje[@i].TowarNazwa" value="@Model.Pozycje[i].TowarNazwa" />
+                        <input type="hidden" name="Pozycje[@i].CenaJednostkowa" value="@Model.Pozycje[i].CenaJednostkowa" />
+                    </td>
+                    <td>@Model.Pozycje[i].CenaJednostkowa.ToString("C")</td>
+                    <td>
+                        <input name="Pozycje[@i].Ilosc" class="form-control" type="number"
+                            value="@Model.Pozycje[i].Ilosc" />
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+    <button type="submit" class="btn btn-primary">Zapisz</button>
+    <a asp-action="Index" class="btn btn-secondary">Anuluj</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
