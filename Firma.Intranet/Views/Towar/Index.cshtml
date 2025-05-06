@@ -16,30 +16,32 @@
             <th>Nazwa</th>
             <th>Cena</th>
             <th>Rodzaj</th>
+            <th>Ilosc</th>
             <th>Akcje</th>
         </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.Kod</td>
-            <td>@item.Nazwa</td>
-            <td>@item.Cena.ToString("C")</td>
-            <td>@item.Rodzaj?.Nazwa</td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdTowaru" class="btn btn-olive btn-sm me-1">
-                    <i class="bi bi-pencil-square"></i> Edytuj
-                </a>
-                
-                <a asp-action="Details" asp-route-id="@item.IdTowaru" class="btn btn-slate btn-sm me-1">
-                    <i class="bi bi-info-circle"></i> Szczegóły
-                </a>
-                <a asp-action="Delete" asp-route-id="@item.IdTowaru" class="btn btn-danger btn-sm me-1">
-                    <i class="bi bi-trash"></i> Usuń
-                </a>
-            </td>
-        </tr>
-    }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Kod</td>
+                <td>@item.Nazwa</td>
+                <td>@item.Cena.ToString("C")</td>
+                <td>@item.Rodzaj?.Nazwa</td>
+                <td>@item.Ilosc</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdTowaru" class="btn btn-olive btn-sm me-1">
+                        <i class="bi bi-pencil-square"></i> Edytuj
+                    </a>
+
+                    <a asp-action="Details" asp-route-id="@item.IdTowaru" class="btn btn-slate btn-sm me-1">
+                        <i class="bi bi-info-circle"></i> Szczegóły
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@item.IdTowaru" class="btn btn-danger btn-sm me-1">
+                        <i class="bi bi-trash"></i> Usuń
+                    </a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
