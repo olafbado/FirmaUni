@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Firma.Data.Data.Sklep
 {
@@ -10,20 +11,13 @@ namespace Firma.Data.Data.Sklep
         public DateTime DataZamowienia { get; set; } = DateTime.UtcNow;
 
         [Required]
-        public string ImieNazwisko { get; set; } = string.Empty;
-
-        [Required, EmailAddress]
-        public string Email { get; set; } = string.Empty;
-
-        [Required]
-        public string Adres { get; set; } = string.Empty;
-
-        [Required]
         public decimal Suma { get; set; }
 
-        public ICollection<PozycjaZamowienia> Pozycje { get; set; } = new List<PozycjaZamowienia>();
+        [Required]
+        public string UzytkownikId { get; set; } = string.Empty;
 
-        public string? UzytkownikId { get; set; }
-        public Uzytkownik? Uzytkownik { get; set; }
+        public Uzytkownik Uzytkownik { get; set; } = null!;
+
+        public ICollection<PozycjaZamowienia> Pozycje { get; set; } = new List<PozycjaZamowienia>();
     }
 }
