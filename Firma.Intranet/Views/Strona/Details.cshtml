@@ -1,0 +1,26 @@
+@model Firma.Data.Data.CMS.Strona
+@{
+    ViewData["Title"] = "Szczegóły strony";
+}
+
+<h1 class="mb-4">Szczegóły strony</h1>
+
+<div class="mb-3">
+    <strong>Tytuł odnośnika:</strong> @Model.LinkTytul
+</div>
+<div class="mb-3">
+    <strong>Tytuł:</strong> @Model.Tytul
+</div>
+<div class="mb-3">
+    <strong>Treść:</strong> @Model.Tresc
+</div>
+<div class="mb-3">
+    <strong>Pozycja:</strong> @Model.Pozycja
+</div>
+
+<a asp-action="Edit" asp-route-id="@Model.IdStrony" class="btn btn-olive me-2">
+    <i class="bi bi-pencil"></i> Edytuj
+</a>
+<a asp-action="Index" class="btn btn-secondary">
+    <i class="bi bi-arrow-left"></i> Wróć do listy
+</a>

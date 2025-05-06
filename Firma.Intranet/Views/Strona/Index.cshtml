@@ -19,24 +19,28 @@
         </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.Tytul</td>
-            <td>@item.Tresc?.Substring(0, Math.Min(50, item.Tresc.Length))...</td>
-            <td>@item.Pozycja</td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdStrony" class="btn btn-olive btn-sm me-1">
-                    <i class="bi bi-pencil-square"></i> Edytuj
-                </a>
-                <a asp-action="Details" asp-route-id="@item.IdStrony" class="btn btn-slate btn-sm me-1">
-                    <i class="bi bi-info-circle"></i> Szczegóły
-                </a>
-                <a asp-action="Delete" asp-route-id="@item.IdStrony" class="btn btn-danger btn-sm">
-                    <i class="bi bi-trash"></i> Usuń
-                </a>
-            </td>
-        </tr>
-    }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Tytul</td>
+                <td>@item.Tresc?.Substring(0, Math.Min(50, item.Tresc.Length))...</td>
+                <td>@item.Pozycja</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdStrony" class="btn btn-olive btn-sm me-1">
+                        <i class="bi bi-pencil-square"></i> Edytuj
+                    </a>
+                    <a asp-action="Details" asp-route-id="@item.IdStrony" class="btn btn-slate btn-sm me-1">
+                        <i class="bi bi-info-circle"></i> Szczegóły
+                    </a>
+
+                    <form asp-action="Delete" asp-route-id="@item.IdStrony" method="post" class="d-inline"
+                        onsubmit="return confirm('Czy na pewno chcesz usunąć tę stronę?');">
+                        <button type="submit" class="btn btn-danger btn-sm">
+                            <i class="bi bi-trash"></i> Usuń
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
