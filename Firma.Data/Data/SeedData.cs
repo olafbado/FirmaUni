@@ -11,7 +11,7 @@ namespace Firma.Data
         {
             using var context = serviceProvider.GetRequiredService<FirmaContext>();
 
-            // Usuwanie istniejących danych (opcjonalne — przydatne do testów)
+            // Czyścimy dane
             context.Uzytkownik.RemoveRange(context.Uzytkownik);
             context.Strona.RemoveRange(context.Strona);
             context.Aktualnosc.RemoveRange(context.Aktualnosc);
@@ -21,7 +21,7 @@ namespace Firma.Data
             context.Zamowienie.RemoveRange(context.Zamowienie);
             context.SaveChanges();
 
-            // Dodaj użytkownika testowego
+            // Użytkownik
             context.Uzytkownik.Add(
                 new Uzytkownik
                 {
@@ -33,7 +33,7 @@ namespace Firma.Data
             );
             context.SaveChanges();
 
-            // CMS - Strony
+            // Strony CMS
             context.Strona.AddRange(
                 new Strona
                 {
@@ -58,7 +58,7 @@ namespace Firma.Data
                 }
             );
 
-            // CMS - Aktualności
+            // Aktualności
             context.Aktualnosc.AddRange(
                 new Aktualnosc
                 {
@@ -83,83 +83,82 @@ namespace Firma.Data
                 }
             );
 
-            // Sklep - Kategorie
-            context.Rodzaj.AddRange(
-                new Rodzaj { IdRodzaju = 1, Nazwa = "Elektronika" },
-                new Rodzaj { IdRodzaju = 2, Nazwa = "Moda" },
-                new Rodzaj { IdRodzaju = 3, Nazwa = "Dom i ogród" }
-            );
+            // Kategorie
+            var rodzaj1 = new Rodzaj { Nazwa = "Elektronika" };
+            var rodzaj2 = new Rodzaj { Nazwa = "Moda" };
+            var rodzaj3 = new Rodzaj { Nazwa = "Dom i ogród" };
 
-            // Sklep - Towary
-            context.Towar.AddRange(
-                new Towar
-                {
-                    IdTowaru = 1,
-                    Nazwa = "Telefon",
-                    Cena = 999.99M,
-                    Kod = "TEL001",
-                    FotoUrl = "telefon.jpg",
-                    IdRodzaju = 1,
-                    Ilosc = 10,
-                },
-                new Towar
-                {
-                    IdTowaru = 2,
-                    Nazwa = "Koszulka",
-                    Cena = 49.99M,
-                    Kod = "KOSZ001",
-                    FotoUrl = "koszulka.jpg",
-                    IdRodzaju = 2,
-                    Ilosc = 3,
-                },
-                new Towar
-                {
-                    IdTowaru = 3,
-                    Nazwa = "Grill",
-                    Cena = 299.99M,
-                    Kod = "GRILL001",
-                    FotoUrl = "grill.jpg",
-                    IdRodzaju = 3,
-                    Ilosc = 2,
-                }
-            );
+            context.Rodzaj.AddRange(rodzaj1, rodzaj2, rodzaj3);
+            context.SaveChanges();
 
-            // Koszyk testowy
+            // Towary
+            var towar1 = new Towar
+            {
+                Nazwa = "Telefon",
+                Cena = 999.99M,
+                Kod = "TEL001",
+                FotoUrl = "telefon.jpg",
+                IdRodzaju = rodzaj1.IdRodzaju,
+                Ilosc = 10,
+            };
+            var towar2 = new Towar
+            {
+                Nazwa = "Koszulka",
+                Cena = 49.99M,
+                Kod = "KOSZ001",
+                FotoUrl = "koszulka.jpg",
+                IdRodzaju = rodzaj2.IdRodzaju,
+                Ilosc = 3,
+            };
+            var towar3 = new Towar
+            {
+                Nazwa = "Grill",
+                Cena = 299.99M,
+                Kod = "GRILL001",
+                FotoUrl = "grill.jpg",
+                IdRodzaju = rodzaj3.IdRodzaju,
+                Ilosc = 2,
+            };
+
+            context.Towar.AddRange(towar1, towar2, towar3);
+            context.SaveChanges();
+
+            // Koszyk
             context.Koszyk.Add(
                 new Koszyk
                 {
                     UzytkownikId = "1",
                     Pozycje = new List<PozycjaKoszyka>
                     {
-                        new PozycjaKoszyka { TowarId = 1, Ilosc = 2 },
-                        new PozycjaKoszyka { TowarId = 2, Ilosc = 1 },
+                        new PozycjaKoszyka { TowarId = towar1.IdTowaru, Ilosc = 2 },
+                        new PozycjaKoszyka { TowarId = towar2.IdTowaru, Ilosc = 1 },
                     },
                 }
             );
 
-            // Zamówienie testowe
+            // Zamówienie
             context.Zamowienie.Add(
                 new Zamowienie
                 {
-                    Suma = 1349.97M,
                     UzytkownikId = "1",
+                    Suma = 1349.97M,
                     Pozycje = new List<PozycjaZamowienia>
                     {
                         new PozycjaZamowienia
                         {
-                            TowarId = 1,
+                            TowarId = towar1.IdTowaru,
                             Ilosc = 1,
                             CenaJednostkowa = 999.99M,
                         },
                         new PozycjaZamowienia
                         {
-                            TowarId = 2,
+                            TowarId = towar2.IdTowaru,
                             Ilosc = 2,
                             CenaJednostkowa = 49.99M,
                         },
                         new PozycjaZamowienia
                         {
-                            TowarId = 3,
+                            TowarId = towar3.IdTowaru,
                             Ilosc = 1,
                             CenaJednostkowa = 299.99M,
                         },
