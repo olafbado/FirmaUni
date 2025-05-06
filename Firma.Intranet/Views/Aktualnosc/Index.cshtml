@@ -26,11 +26,15 @@
                 <td>@item.LinkTytul</td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.IdAktualnosci" class="btn btn-olive btn-sm me-1">
-                    <i class="bi bi-pencil-square"></i> Edytuj</a>
+                        <i class="bi bi-pencil-square"></i> Edytuj</a>
                     <a asp-action="Details" asp-route-id="@item.IdAktualnosci" class="btn btn-slate btn-sm me-1">
-                    <i class="bi bi-info-circle"></i> Szczegóły</a>
-                    <a asp-action="Delete" asp-route-id="@item.IdAktualnosci" class="btn btn-danger btn-sm me-1">
-                    <i class="bi bi-trash"></i> Usuń</a>
+                        <i class="bi bi-info-circle"></i> Szczegóły</a>
+                    <form asp-action="Delete" asp-route-id="@item.IdAktualnosci" method="post" class="d-inline"
+                        onsubmit="return confirm('Czy na pewno chcesz usunąć tę aktualność?');">
+                        <button type="submit" class="btn btn-danger btn-sm">
+                            <i class="bi bi-trash"></i> Usuń
+                        </button>
+                    </form>
                 </td>
             </tr>
         }

@@ -1,0 +1,39 @@
+@model Firma.Data.Data.CMS.Aktualnosc
+@{
+    ViewData["Title"] = "Dodaj aktualność";
+}
+
+<h1 class="mb-4">Dodaj nową aktualność</h1>
+
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label asp-for="LinkTytul" class="form-label"></label>
+        <input asp-for="LinkTytul" class="form-control" />
+        <span asp-validation-for="LinkTytul" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Tytul" class="form-label"></label>
+        <input asp-for="Tytul" class="form-control" />
+        <span asp-validation-for="Tytul" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Tresc" class="form-label"></label>
+        <textarea asp-for="Tresc" class="form-control" rows="4"></textarea>
+        <span asp-validation-for="Tresc" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Pozycja" class="form-label"></label>
+        <input asp-for="Pozycja" class="form-control" />
+        <span asp-validation-for="Pozycja" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle"></i> Zapisz</button>
+    <a asp-action="Index" class="btn btn-secondary">Anuluj</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
