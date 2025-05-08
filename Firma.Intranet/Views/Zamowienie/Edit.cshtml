@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Edytuj zamówienie";
     var uzytkownicy = ViewData["Uzytkownicy"] as List<Firma.Data.Data.Sklep.Uzytkownik>;
+    var koszyki = ViewData["Koszyki"] as List<Firma.Data.Data.Sklep.Koszyk>;
 }
 
 <h1>Edytuj zamówienie</h1>
@@ -11,44 +12,53 @@
 
     <div class="mb-3">
         <label asp-for="UzytkownikId" class="form-label"></label>
-        <select asp-for="UzytkownikId" class="form-select">
+        <select asp-for="UzytkownikId" class="form-select" required>
             <option value="">-- Wybierz użytkownika --</option>
             @foreach (var u in uzytkownicy!)
             {
-                <option value="@u.UzytkownikId">@u.Imie @u.Nazwisko</option>
+                <option value="@u.UzytkownikId" selected="@(u.UzytkownikId == Model.UzytkownikId)">
+                    @u.Imie @u.Nazwisko
+                </option>
             }
         </select>
+        <span asp-validation-for="UzytkownikId" class="text-danger"></span>
     </div>
 
-    <h4>Pozycje zamówienia</h4>
-    <table class="table table-bordered align-middle">
-        <thead class="table-dark">
-            <tr>
-                <th>Towar</th>
-                <th>Cena</th>
-                <th>Ilość</th>
-            </tr>
-        </thead>
-        <tbody>
-            @for (int i = 0; i < Model.Pozycje.Count; i++)
-            {
-                <tr>
-                    <td>
-                        @Model.Pozycje[i].TowarNazwa
-                        <input type="hidden" name="Pozycje[@i].TowarId" value="@Model.Pozycje[i].TowarId" />
-                        <input type="hidden" name="Pozycje[@i].TowarNazwa" value="@Model.Pozycje[i].TowarNazwa" />
-                        <input type="hidden" name="Pozycje[@i].CenaJednostkowa" value="@Model.Pozycje[i].CenaJednostkowa" />
-                    </td>
-                    <td>@Model.Pozycje[i].CenaJednostkowa.ToString("C")</td>
-                    <td>
-                        <input name="Pozycje[@i].Ilosc" class="form-control" type="number"
-                            value="@Model.Pozycje[i].Ilosc" />
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <div class="mb-3">
+        <label asp-for="Adres" class="form-label"></label>
+        <input asp-for="Adres" class="form-control" />
+        <span asp-validation-for="Adres" class="text-danger"></span>
+    </div>
 
-    <button type="submit" class="btn btn-primary">Zapisz zmiany</button>
+    <div class="mb-3">
+        <label asp-for="MetodaPlatnosci" class="form-label"></label>
+        <select asp-for="MetodaPlatnosci" class="form-select" required>
+            <option value="">-- Wybierz metodę płatności --</option>
+            <option value="Przelew" selected="@(Model.MetodaPlatnosci == "Przelew")">Przelew</option>
+            <option value="Gotówka" selected="@(Model.MetodaPlatnosci == "Gotówka")">Gotówka</option>
+            <option value="PayPal" selected="@(Model.MetodaPlatnosci == "PayPal")">PayPal</option>
+        </select>
+        <span asp-validation-for="MetodaPlatnosci" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="KoszykId" class="form-label"></label>
+        <select asp-for="KoszykId" class="form-select" required>
+            <option value="">-- Wybierz koszyk --</option>
+            @foreach (var k in koszyki!)
+            {
+                <option value="@k.IdKoszyka" selected="@(k.IdKoszyka == Model.KoszykId)">
+                    Koszyk #@k.IdKoszyka (Użytkownik: @k.Uzytkownik?.Email)
+                </option>
+            }
+        </select>
+        <span asp-validation-for="KoszykId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Zapisz</button>
     <a asp-action="Index" class="btn btn-secondary">Anuluj</a>
 </form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

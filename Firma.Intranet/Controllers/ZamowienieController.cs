@@ -25,8 +25,6 @@ public class ZamowienieController : Controller
     {
         var zamowienie = await _context
             .Zamowienie.Include(z => z.Uzytkownik)
-            .Include(z => z.Pozycje)
-            .ThenInclude(p => p.Towar)
             .FirstOrDefaultAsync(z => z.IdZamowienia == id);
 
         if (zamowienie == null)
@@ -38,111 +36,76 @@ public class ZamowienieController : Controller
     [HttpGet]
     public IActionResult Create()
     {
-        var model = new ZamowienieViewModel
-        {
-            Pozycje = _context
-                .Towar.Select(t => new PozycjaZamowieniaVM
-                {
-                    TowarId = t.IdTowaru,
-                    TowarNazwa = t.Nazwa,
-                    CenaJednostkowa = t.Cena,
-                    Ilosc = 0,
-                })
-                .ToList(),
-        };
-
         ViewData["Uzytkownicy"] = _context.Uzytkownik.ToList();
-        return View(model);
+        ViewData["Koszyki"] = _context.Koszyk.Include(k => k.Uzytkownik).ToList();
+        return View(new ZamowienieViewModel());
     }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(ZamowienieViewModel vm)
     {
-        // print vm to console
-        Console.WriteLine($"UzytkownikId: {vm.UzytkownikId}");
-        if (vm.Pozycje == null)
-        {
-            Console.WriteLine("Pozycje == null");
-        }
-        else
-        {
-            foreach (var pozycja in vm.Pozycje)
-            {
-                if (pozycja == null)
-                {
-                    Console.WriteLine("Jedna z pozycji to null");
-                    continue;
-                }
-
-                Console.WriteLine(
-                    $"TowarId: {pozycja.TowarId}, Ilosc: {pozycja.Ilosc}, CenaJednostkowa: {pozycja.CenaJednostkowa}"
-                );
-            }
-        }
         if (!ModelState.IsValid)
         {
             ViewData["Uzytkownicy"] = _context.Uzytkownik.ToList();
+            ViewData["Koszyki"] = _context.Koszyk.ToList();
             return View(vm);
         }
 
-        var pozycje = vm
-            .Pozycje.Where(p => p.Ilosc > 0)
-            .Select(p => new PozycjaZamowienia
-            {
-                TowarId = p.TowarId,
-                Ilosc = p.Ilosc,
-                CenaJednostkowa = p.CenaJednostkowa,
-            })
-            .ToList();
+        // Pobierz koszyk z pozycjami i towarami
+        var koszyk = await _context
+            .Koszyk.Include(k => k.Pozycje)
+            .ThenInclude(p => p.Towar)
+            .FirstOrDefaultAsync(k => k.IdKoszyka == vm.KoszykId);
+
+        if (koszyk == null)
+        {
+            ModelState.AddModelError("KoszykId", "Wybrany koszyk nie istnieje.");
+            ViewData["Uzytkownicy"] = _context.Uzytkownik.ToList();
+            ViewData["Koszyki"] = _context.Koszyk.ToList();
+            return View(vm);
+        }
+
+        // Oblicz sumę
+        var suma = koszyk.Pozycje.Sum(p => p.Ilosc * p.Towar.Cena);
 
         var zamowienie = new Zamowienie
         {
             UzytkownikId = vm.UzytkownikId,
+            Adres = vm.Adres,
+            MetodaPlatnosci = vm.MetodaPlatnosci,
+            KoszykId = vm.KoszykId,
+            Suma = suma,
             DataZamowienia = DateTime.UtcNow,
-            Pozycje = pozycje,
-            Suma = pozycje.Sum(p => p.CenaJednostkowa * p.Ilosc),
         };
 
         _context.Zamowienie.Add(zamowienie);
         await _context.SaveChangesAsync();
-        return RedirectToAction("Index");
+        return RedirectToAction(nameof(Index));
     }
 
     [HttpGet]
     public async Task<IActionResult> Edit(int id)
     {
         var zamowienie = await _context
-            .Zamowienie.Include(z => z.Pozycje)
+            .Zamowienie.Include(z => z.Koszyk)
             .FirstOrDefaultAsync(z => z.IdZamowienia == id);
 
         if (zamowienie == null)
             return NotFound();
 
-        var towary = await _context.Towar.ToListAsync();
-
         var vm = new ZamowienieViewModel
         {
             IdZamowienia = zamowienie.IdZamowienia,
             UzytkownikId = zamowienie.UzytkownikId,
-            Pozycje = towary
-                .Select(t =>
-                {
-                    var istniejacaPozycja = zamowienie.Pozycje.FirstOrDefault(p =>
-                        p.TowarId == t.IdTowaru
-                    );
-                    return new PozycjaZamowieniaVM
-                    {
-                        TowarId = t.IdTowaru,
-                        TowarNazwa = t.Nazwa,
-                        CenaJednostkowa = t.Cena,
-                        Ilosc = istniejacaPozycja?.Ilosc ?? 0,
-                    };
-                })
-                .ToList(),
+            Adres = zamowienie.Adres,
+            MetodaPlatnosci = zamowienie.MetodaPlatnosci,
+            KoszykId = zamowienie.KoszykId,
+            // Suma nie jest edytowalna – przeliczana w POST
         };
 
-        ViewData["Uzytkownicy"] = await _context.Uzytkownik.ToListAsync();
+        ViewData["Uzytkownicy"] = _context.Uzytkownik.ToList();
+        ViewData["Koszyki"] = _context.Koszyk.Include(k => k.Uzytkownik).ToList();
         return View(vm);
     }
 
@@ -150,35 +113,39 @@ public class ZamowienieController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(int id, ZamowienieViewModel vm)
     {
-        Console.WriteLine($"id: {id}");
-        Console.WriteLine($"vm.IdZamowienia: {vm.IdZamowienia}");
         if (id != vm.IdZamowienia)
             return NotFound();
 
-        var zamowienie = await _context
-            .Zamowienie.Include(z => z.Pozycje)
-            .FirstOrDefaultAsync(z => z.IdZamowienia == id);
+        if (!ModelState.IsValid)
+        {
+            ViewData["Uzytkownicy"] = _context.Uzytkownik.ToList();
+            ViewData["Koszyki"] = _context.Koszyk.ToList();
+            return View(vm);
+        }
 
+        var zamowienie = await _context.Zamowienie.FirstOrDefaultAsync(z => z.IdZamowienia == id);
         if (zamowienie == null)
             return NotFound();
 
-        // Zaktualizuj dane
-        zamowienie.UzytkownikId = vm.UzytkownikId;
-        zamowienie.Pozycje.Clear();
+        // Pobieramy koszyk i przeliczamy sumę
+        var koszyk = await _context
+            .Koszyk.Include(k => k.Pozycje)
+            .ThenInclude(p => p.Towar)
+            .FirstOrDefaultAsync(k => k.IdKoszyka == vm.KoszykId);
 
-        foreach (var p in vm.Pozycje.Where(p => p.Ilosc > 0))
+        if (koszyk == null)
         {
-            zamowienie.Pozycje.Add(
-                new PozycjaZamowienia
-                {
-                    TowarId = p.TowarId,
-                    Ilosc = p.Ilosc,
-                    CenaJednostkowa = _context.Towar.Find(p.TowarId)?.Cena ?? 0,
-                }
-            );
+            ModelState.AddModelError("KoszykId", "Wybrany koszyk nie istnieje.");
+            ViewData["Uzytkownicy"] = _context.Uzytkownik.ToList();
+            ViewData["Koszyki"] = _context.Koszyk.ToList();
+            return View(vm);
         }
 
-        zamowienie.Suma = zamowienie.Pozycje.Sum(p => p.Ilosc * p.CenaJednostkowa);
+        zamowienie.UzytkownikId = vm.UzytkownikId;
+        zamowienie.Adres = vm.Adres;
+        zamowienie.MetodaPlatnosci = vm.MetodaPlatnosci;
+        zamowienie.KoszykId = vm.KoszykId;
+        zamowienie.Suma = koszyk.Pozycje.Sum(p => p.Ilosc * p.Towar.Cena);
 
         await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));

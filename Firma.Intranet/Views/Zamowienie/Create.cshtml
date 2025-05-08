@@ -1,7 +1,9 @@
 @model Firma.Intranet.Models.ZamowienieViewModel
 @{
-    var uzytkownicy = ViewData["Uzytkownicy"] as List<Firma.Data.Data.Sklep.Uzytkownik>;
     ViewData["Title"] = "Nowe zamówienie";
+    var uzytkownicy = ViewData["Uzytkownicy"] as List<Firma.Data.Data.Sklep.Uzytkownik>;
+    var koszyki = ViewData["Koszyki"] as List<Firma.Data.Data.Sklep.Koszyk>;
+}
 }
 
 <h1>Nowe zamówienie</h1>
@@ -16,37 +18,40 @@
                 <option value="@u.UzytkownikId">@u.Imie @u.Nazwisko</option>
             }
         </select>
+        <span asp-validation-for="UzytkownikId" class="text-danger"></span>
     </div>
 
-    <h4>Pozycje zamówienia</h4>
-    <table class="table table-bordered">
-        <thead class="table-dark">
-            <tr>
-                <th>Towar</th>
-                <th>Cena</th>
-                <th>Ilość</th>
-            </tr>
-        </thead>
-        <tbody>
-            @for (int i = 0; i < Model.Pozycje.Count; i++)
+    <div class="mb-3">
+        <label asp-for="KoszykId" class="form-label"></label>
+        <select asp-for="KoszykId" class="form-select" required>
+            <option value="">-- Wybierz koszyk --</option>
+            @foreach (var k in koszyki!)
             {
-                <tr>
-                    <td>
-                        @Model.Pozycje[i].TowarNazwa
-                        <input type="hidden" name="Pozycje[@i].TowarId" value="@Model.Pozycje[i].TowarId" />
-                        <input type="hidden" name="Pozycje[@i].TowarNazwa" value="@Model.Pozycje[i].TowarNazwa" />
-                        <input type="hidden" name="Pozycje[@i].CenaJednostkowa" value="@Model.Pozycje[i].CenaJednostkowa" />
-                    </td>
-                    <td>@Model.Pozycje[i].CenaJednostkowa.ToString("C")</td>
-                    <td>
-                        <input name="Pozycje[@i].Ilosc" class="form-control" type="number"
-                            value="@Model.Pozycje[i].Ilosc" />
-                    </td>
-                </tr>
+                <option value="@k.IdKoszyka">
+                    Koszyk #@k.IdKoszyka - @k.Uzytkownik?.Imie @k.Uzytkownik?.Nazwisko
+                </option>
             }
+        </select>
+        <span asp-validation-for="KoszykId" class="text-danger"></span>
+    </div>
 
-        </tbody>
-    </table>
+    <div class="mb-3">
+        <label asp-for="Adres" class="form-label"></label>
+        <input asp-for="Adres" class="form-control" />
+        <span asp-validation-for="Adres" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="MetodaPlatnosci" class="form-label"></label>
+        <select asp-for="MetodaPlatnosci" class="form-select" required>
+            <option value="">-- Wybierz metodę płatności --</option>
+            <option value="Przelew">Przelew</option>
+            <option value="Gotówka">Gotówka</option>
+            <option value="PayPal">PayPal</option>
+        </select>
+        <span asp-validation-for="MetodaPlatnosci" class="text-danger"></span>
+    </div>
+
 
     <button type="submit" class="btn btn-primary">Zapisz</button>
     <a asp-action="Index" class="btn btn-secondary">Anuluj</a>

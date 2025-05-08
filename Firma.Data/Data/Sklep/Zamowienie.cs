@@ -18,6 +18,16 @@ namespace Firma.Data.Data.Sklep
 
         public Uzytkownik Uzytkownik { get; set; } = null!;
 
-        public ICollection<PozycjaZamowienia> Pozycje { get; set; } = new List<PozycjaZamowienia>();
+        [Required]
+        public string Adres { get; set; } = string.Empty;
+
+        [Required]
+        [Display(Name = "Metoda płatności")]
+        public string MetodaPlatnosci { get; set; } = string.Empty;
+
+        [Required]
+        public int KoszykId { get; set; }
+
+        public Koszyk Koszyk { get; set; } = null!;
     }
 }

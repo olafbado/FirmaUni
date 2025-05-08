@@ -1,22 +1,22 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Firma.Intranet.Models
+namespace Firma.Intranet.Models;
+
+public class ZamowienieViewModel
 {
-    public class PozycjaZamowieniaVM
-    {
-        public int TowarId { get; set; }
-        public string TowarNazwa { get; set; } = "";
-        public decimal CenaJednostkowa { get; set; }
-        public int Ilosc { get; set; }
-    }
+    public int IdZamowienia { get; set; }
 
-    public class ZamowienieViewModel
-    {
-        public int IdZamowienia { get; set; }
+    [Required]
+    public string UzytkownikId { get; set; } = "";
 
-        [Required]
-        public string UzytkownikId { get; set; } = "";
+    [Required]
+    public string Adres { get; set; } = "";
 
-        public List<PozycjaZamowieniaVM> Pozycje { get; set; } = new();
-    }
+    [Required]
+    [Display(Name = "Metoda płatności")]
+    public string MetodaPlatnosci { get; set; } = "";
+
+    [Required]
+    [Display(Name = "Koszyk")]
+    public int KoszykId { get; set; }
 }

@@ -5,39 +5,11 @@
 
 <h1 class="mb-4">Szczegóły zamówienia</h1>
 
-<div class="mb-3">
-    <strong>Data zamówienia:</strong> @Model.DataZamowienia.ToString("g")
-</div>
+<div class="mb-3"><strong>Data:</strong> @Model.DataZamowienia.ToString("g")</div>
+<div class="mb-3"><strong>Użytkownik:</strong> @Model.Uzytkownik.Imie @Model.Uzytkownik.Nazwisko</div>
+<div class="mb-3"><strong>Adres:</strong> @Model.Adres</div>
+<div class="mb-3"><strong>Metoda płatności:</strong> @Model.MetodaPlatnosci</div>
+<div class="mb-3"><strong>Suma:</strong> @Model.Suma.ToString("C")</div>
+<div class="mb-3"><strong>Koszyk ID:</strong> @Model.KoszykId</div>
 
-<div class="mb-3">
-    <strong>Użytkownik:</strong> @Model.Uzytkownik?.Imie @Model.Uzytkownik?.Nazwisko
-</div>
-
-<div class="mb-3">
-    <strong>Suma:</strong> @Model.Suma.ToString("C")
-</div>
-
-<h4 class="mt-4">Pozycje zamówienia</h4>
-<table class="table table-bordered">
-    <thead class="table-light">
-        <tr>
-            <th>Nazwa towaru</th>
-            <th>Ilość</th>
-            <th>Cena jednostkowa</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var p in Model.Pozycje)
-        {
-            <tr>
-                <td>@p.Towar?.Nazwa</td>
-                <td>@p.Ilosc</td>
-                <td>@p.CenaJednostkowa.ToString("C")</td>
-            </tr>
-        }
-    </tbody>
-</table>
-
-<a asp-action="Index" class="btn btn-secondary">
-    <i class="bi bi-arrow-left"></i> Wróć do listy
-</a>
+<a asp-action="Index" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Wróć do listy</a>
