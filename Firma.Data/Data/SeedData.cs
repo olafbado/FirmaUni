@@ -124,45 +124,26 @@ namespace Firma.Data
             context.SaveChanges();
 
             // Koszyk
-            context.Koszyk.Add(
-                new Koszyk
+            var koszyk = new Koszyk
+            {
+                UzytkownikId = "1",
+                Pozycje = new List<PozycjaKoszyka>
                 {
-                    UzytkownikId = "1",
-                    Pozycje = new List<PozycjaKoszyka>
-                    {
-                        new PozycjaKoszyka { TowarId = towar1.IdTowaru, Ilosc = 2 },
-                        new PozycjaKoszyka { TowarId = towar2.IdTowaru, Ilosc = 1 },
-                    },
-                }
-            );
+                    new PozycjaKoszyka { TowarId = towar1.IdTowaru, Ilosc = 2 },
+                    new PozycjaKoszyka { TowarId = towar2.IdTowaru, Ilosc = 1 },
+                },
+            };
+            context.Koszyk.Add(koszyk);
+            context.SaveChanges(); // ✅ teraz koszyk.IdKoszyka jest dostępny!
 
-            // Zamówienie
             context.Zamowienie.Add(
                 new Zamowienie
                 {
                     UzytkownikId = "1",
                     Suma = 1349.97M,
-                    Pozycje = new List<PozycjaZamowienia>
-                    {
-                        new PozycjaZamowienia
-                        {
-                            TowarId = towar1.IdTowaru,
-                            Ilosc = 1,
-                            CenaJednostkowa = 999.99M,
-                        },
-                        new PozycjaZamowienia
-                        {
-                            TowarId = towar2.IdTowaru,
-                            Ilosc = 2,
-                            CenaJednostkowa = 49.99M,
-                        },
-                        new PozycjaZamowienia
-                        {
-                            TowarId = towar3.IdTowaru,
-                            Ilosc = 1,
-                            CenaJednostkowa = 299.99M,
-                        },
-                    },
+                    Adres = "ul. Testowa 1, 00-001 Warszawa",
+                    MetodaPlatnosci = "Karta kredytowa",
+                    KoszykId = koszyk.IdKoszyka, // ✅ teraz istnieje
                 }
             );
 
