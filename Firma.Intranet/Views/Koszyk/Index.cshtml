@@ -23,11 +23,13 @@
                 <td>@item.Uzytkownik?.Imie @item.Uzytkownik?.Nazwisko</td>
                 <td>@item.Pozycje.Count</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.IdKoszyka" class="btn btn-sm btn-olive me-1">Edytuj</a>
-                    <a asp-action="Details" asp-route-id="@item.IdKoszyka" class="btn btn-sm btn-slate me-1">Szczegóły</a>
+                    <a asp-action="Edit" asp-route-id="@item.IdKoszyka" class="btn btn-olive btn-sm me-1"><i
+                            class="bi bi-pencil-square"></i> Edytuj</a>
+                    <a asp-action="Details" asp-route-id="@item.IdKoszyka" class="btn btn-slate btn-sm me-1"><i
+                            class="bi bi-info-circle"></i> Szczegóły</a>
                     <form asp-action="Delete" asp-route-id="@item.IdKoszyka" method="post" class="d-inline">
-                        <button type="submit" class="btn btn-sm btn-danger"
-                            onclick="return confirm('Na pewno usunąć?')">Usuń</button>
+                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Na pewno usunąć?')"><i
+                                class="bi bi-trash"></i>Usuń</button>
                     </form>
                 </td>
             </tr>
