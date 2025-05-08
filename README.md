@@ -79,3 +79,8 @@ Jeśli znasz Phoenix, to oto jak możesz zrozumieć ASP.NET Core MVC przez analo
 5. Dane są przekazywane do widoku `Views/Towar/Index.cshtml`
 6. Widok jest renderowany z layoutem `_Layout.cshtml`
 7. Odpowiedź HTML wraca do przeglądarki
+
+
+# MIGRAIONS
+Add migraion: > dotnet ef migrations add UpdateZamowinie --project Firma.Data --startup-project Firma.Intranet
+Run migration: > dotnet ef database update --project Firma.Data --startup-project Firma.Intranet
