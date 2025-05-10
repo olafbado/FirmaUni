@@ -1,24 +1,8 @@
-TODO:
-- shared common styles
-
-- Folder wwwroot/ zawiera pliki statyczne typu css, zdjecia, js itp.,
-dzieki czemu latwo beda dostepne w HTML, w Program.cs odpowiada za to
-app.UseStaticFiles();, potem w HTML mozemy uzyc `<link rel="stylesheet" href="~/css/shared.css">`
-
-- Firma.Data nie zawiera Program.cs poniewaz jest to `biblioteka klas tzn Class Library`.
-Oznacza to, ze nie jest to aplikacja, tylko zbior klas, ktore moga byc
-wykorzystywane w innych aplikacjach, DbContext ktora odpowiada za
-komunikacje z baza danych, migracje i seedy. Ten projekt jest wspoldzielony
-i uzywany przez inne aplikacje
-
-- FIrma.Data linkowany jest w innych projektach poprzez kod `<ProjectReference Include="..\Firma.Data\Firma.Data.csproj" />` w .csproj, 
-to oznacza ze podczas kompilacji zostanie uzyty kod z Firma.Data. 
-
-- w Program.cs Intranetu builder uzywa `AddDbContext<FirmaDbContext>` aby zarejestrowac kontekst bazy danych
-gdzie FirmaContext pochodzi z Firma.Data, dzieki czemu kontrolery w Intranet beda mialy automatycznie
-dostep do zmiennej context i tym samym do bazy danych
-
-- mozna uzywac `var` w przypadku gdy typ jest "oczywisty"
+# Run app
+cd Firma.Intranet
+dotnet clean && dotnet build && dotnet watch run
+cd ../Firma.Portal
+dotnet clean && dotnet build && dotnet watch run
 
 
 # Asynchroniczność i wątki w ASP.NET Core (async/await)
@@ -84,3 +68,4 @@ Jeśli znasz Phoenix, to oto jak możesz zrozumieć ASP.NET Core MVC przez analo
 # MIGRAIONS
 Add migraion: > dotnet ef migrations add UpdateZamowinie --project Firma.Data --startup-project Firma.Intranet
 Run migration: > dotnet ef database update --project Firma.Data --startup-project Firma.Intranet
+
