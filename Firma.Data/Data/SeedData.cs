@@ -134,7 +134,7 @@ namespace Firma.Data
                 },
             };
             context.Koszyk.Add(koszyk);
-            context.SaveChanges(); // ✅ teraz koszyk.IdKoszyka jest dostępny!
+            context.SaveChanges();
 
             context.Zamowienie.Add(
                 new Zamowienie
@@ -143,7 +143,7 @@ namespace Firma.Data
                     Suma = 1349.97M,
                     Adres = "ul. Testowa 1, 00-001 Warszawa",
                     MetodaPlatnosci = "Karta kredytowa",
-                    KoszykId = koszyk.IdKoszyka, // ✅ teraz istnieje
+                    KoszykId = koszyk.IdKoszyka,
                 }
             );
 

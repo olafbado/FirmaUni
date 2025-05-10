@@ -52,7 +52,6 @@ public class ZamowienieController : Controller
             return View(vm);
         }
 
-        // Pobierz koszyk z pozycjami i towarami
         var koszyk = await _context
             .Koszyk.Include(k => k.Pozycje)
             .ThenInclude(p => p.Towar)
@@ -66,7 +65,6 @@ public class ZamowienieController : Controller
             return View(vm);
         }
 
-        // Oblicz sumę
         var suma = koszyk.Pozycje.Sum(p => p.Ilosc * p.Towar.Cena);
 
         var zamowienie = new Zamowienie
@@ -101,7 +99,6 @@ public class ZamowienieController : Controller
             Adres = zamowienie.Adres,
             MetodaPlatnosci = zamowienie.MetodaPlatnosci,
             KoszykId = zamowienie.KoszykId,
-            // Suma nie jest edytowalna – przeliczana w POST
         };
 
         ViewData["Uzytkownicy"] = _context.Uzytkownik.ToList();
@@ -127,7 +124,6 @@ public class ZamowienieController : Controller
         if (zamowienie == null)
             return NotFound();
 
-        // Pobieramy koszyk i przeliczamy sumę
         var koszyk = await _context
             .Koszyk.Include(k => k.Pozycje)
             .ThenInclude(p => p.Towar)

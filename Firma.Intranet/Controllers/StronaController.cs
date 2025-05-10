@@ -19,13 +19,11 @@ public class StronaController : Controller
         return View(await _context.Strona.ToListAsync());
     }
 
-    // GET: Strona/Create
     public IActionResult Create()
     {
         return View();
     }
 
-    // POST: Strona/Create
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(Strona strona)
@@ -39,7 +37,6 @@ public class StronaController : Controller
         return View(strona);
     }
 
-    // GET: Strona/Edit/5
     public async Task<IActionResult> Edit(int? id)
     {
         if (id == null)
@@ -52,7 +49,6 @@ public class StronaController : Controller
         return View(strona);
     }
 
-    // POST: Strona/Edit/5
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(int id, Strona strona)
@@ -79,7 +75,6 @@ public class StronaController : Controller
         return View(strona);
     }
 
-    // GET: Strona/Details/5
     public async Task<IActionResult> Details(int? id)
     {
         if (id == null)
@@ -92,7 +87,6 @@ public class StronaController : Controller
         return View(strona);
     }
 
-    // GET: Strona/Delete/5
     public async Task<IActionResult> Delete(int? id)
     {
         if (id == null)
@@ -105,7 +99,6 @@ public class StronaController : Controller
         return View(strona);
     }
 
-    // POST: Strona/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id)

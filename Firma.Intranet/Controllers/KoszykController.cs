@@ -131,7 +131,6 @@ public class KoszykController : Controller
         if (koszyk == null)
             return NotFound();
 
-        // Update danych
         koszyk.UzytkownikId = vm.UzytkownikId;
         koszyk.Pozycje.Clear();
 
