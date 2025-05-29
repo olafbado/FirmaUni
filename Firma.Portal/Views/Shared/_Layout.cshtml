@@ -36,12 +36,7 @@
                             asp-action="Index">Usługi</a>
                     </li>
    <li class="nav-item">
-    <a class="nav-link position-relative" asp-controller="Koszyk" asp-action="Index">
-        <i class="bi bi-cart3"></i>
-        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-            @((Context.Session.GetObject<List<Firma.Portal.ViewModel.PozycjaKoszykaVM>>("Koszyk")?.Sum(p => p.Ilosc) ?? 0))
-        </span>
-    </a>
+    @await Component.InvokeAsync("KoszykBadge")
 </li>       </ul>
             </div>
         </div>

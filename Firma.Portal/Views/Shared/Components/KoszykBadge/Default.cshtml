@@ -1,0 +1,8 @@
+@model int
+
+<a asp-controller="Koszyk" asp-action="Index" class="btn btn-outline-light position-relative">
+    <i class="bi bi-cart"></i>
+    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+        @Model
+    </span>
+</a>
