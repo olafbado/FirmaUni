@@ -18,5 +18,7 @@ namespace Firma.Data.Data.Sklep
         public ICollection<PozycjaKoszyka> Pozycje { get; set; } = new List<PozycjaKoszyka>();
 
         public Uzytkownik? Uzytkownik { get; set; }
+
+        public bool CzyZamowiony { get; set; } = false;
     }
 }

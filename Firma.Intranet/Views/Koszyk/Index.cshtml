@@ -12,6 +12,7 @@
             <th>Data utworzenia</th>
             <th>Użytkownik</th>
             <th>Liczba pozycji</th>
+            <th>Czy zamowiony</th>
             <th>Akcje</th>
         </tr>
     </thead>
@@ -22,6 +23,7 @@
                 <td>@item.DataUtworzenia.ToString("g")</td>
                 <td>@item.Uzytkownik?.Imie @item.Uzytkownik?.Nazwisko</td>
                 <td>@item.Pozycje.Count</td>
+                <td>@item.CzyZamowiony</td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.IdKoszyka" class="btn btn-olive btn-sm me-1"><i
                             class="bi bi-pencil-square"></i> Edytuj</a>

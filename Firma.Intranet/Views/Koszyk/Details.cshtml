@@ -5,6 +5,8 @@
 <h1>Szczegóły koszyka</h1>
 <div class="mb-3"><strong>Data utworzenia:</strong> @Model.DataUtworzenia.ToString("g")</div>
 <div class="mb-3"><strong>Użytkownik:</strong> @Model.Uzytkownik?.Imie @Model.Uzytkownik?.Nazwisko</div>
+<div class="mb-3"><strong>Czy zamowiony:</strong> @Model.CzyZamowiony</div>
+
 <h4>Pozycje</h4>
 <table class="table table-bordered">
     <thead>
