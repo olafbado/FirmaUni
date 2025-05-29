@@ -1,0 +1,55 @@
+@model Firma.Data.Data.Sklep.Towar
+@{
+    ViewData["Title"] = Model.Nazwa;
+}
+
+<div class="row">
+    <!-- Zdjęcie -->
+    <div class="col-md-6">
+        <img src="/images/@Model.FotoUrl" alt="@Model.Nazwa" class="img-fluid rounded shadow-sm" style="object-fit: cover; width: 100%; height: 400px;" />
+    </div>
+
+    <!-- Szczegóły -->
+    <div class="col-md-6">
+        <h2 class="mb-3">@Model.Nazwa</h2>
+        <p class="text-muted">Kategoria: @Model.Rodzaj?.Nazwa</p>
+        <p>@Model.Opis</p>
+        <h4 class="fw-bold my-3">@Model.Cena.ToString("C")</h4>
+        <p>Dostępność: @Model.Ilosc szt.</p>
+
+        <form method="post" asp-controller="Koszyk" asp-action="Dodaj">
+            <input type="hidden" name="idTowaru" value="@Model.IdTowaru" />
+            <div class="input-group mb-3" style="max-width: 200px;">
+                <input type="number" name="ilosc" class="form-control" value="1" min="1" max="@Model.Ilosc" />
+                <button class="btn btn-primary mt-2" type="submit">🛒 Dodaj do koszyka</button>
+            </div>
+        </form>
+
+        <a asp-controller="Sklep" asp-action="Index" class="btn btn-outline-secondary mt-2">
+            ← Powrót do sklepu
+        </a>
+    </div>
+
+    @if (ViewData["PodobneProdukty"] is List<Firma.Data.Data.Sklep.Towar> podobne && podobne.Any())
+{
+    <h4 class="mt-5 mb-3">Podobne produkty</h4>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        @foreach (var p in podobne)
+        {
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <div style="height: 180px; overflow: hidden; border-radius: 0.75rem;">
+                        <img src="/images/@p.FotoUrl" alt="@p.Nazwa" style="width: 100%; height: 100%; object-fit: cover;" />
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <h6 class="card-title">@p.Nazwa</h6>
+                        <p class="text-muted mb-1">@p.Cena.ToString("C")</p>
+                        <a asp-controller="Towar" asp-action="Details" asp-route-id="@p.IdTowaru" class="btn btn-outline-primary mt-auto">Zobacz</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+</div>
