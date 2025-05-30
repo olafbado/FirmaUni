@@ -34,13 +34,19 @@ public class KoszykController : Controller
     [HttpPost]
     public async Task<IActionResult> Dodaj(int idTowaru, int ilosc)
     {
-        var userId = "1"; // z ClaimsPrincipal
+        var userId = "1";
+
+        var towar = await _context.Towar.FindAsync(idTowaru);
+        if (towar == null || towar.Ilosc < ilosc)
+        {
+            TempData["Error"] = "Nie ma wystarczającej ilości towaru.";
+            return RedirectToAction("Details", "Towar", new { id = idTowaru });
+        }
 
         var koszyk = await _context.Koszyk
             .Include(k => k.Pozycje)
             .FirstOrDefaultAsync(k => k.UzytkownikId == userId && !k.CzyZamowiony);
 
-        // Jeśli nie ma aktywnego koszyka → tworzymy nowy
         if (koszyk == null)
         {
             koszyk = new Koszyk
@@ -50,16 +56,14 @@ public class KoszykController : Controller
                 CzyZamowiony = false
             };
             _context.Koszyk.Add(koszyk);
-            await _context.SaveChangesAsync(); // zapis, żeby mieć IdKoszyka
+            await _context.SaveChangesAsync();
         }
 
-        // Szukamy, czy pozycja już istnieje
         var istniejącaPozycja = koszyk.Pozycje.FirstOrDefault(p => p.TowarId == idTowaru);
 
         if (istniejącaPozycja != null)
         {
             istniejącaPozycja.Ilosc += ilosc;
-            _context.Update(istniejącaPozycja);
         }
         else
         {
@@ -72,6 +76,9 @@ public class KoszykController : Controller
             _context.PozycjaKoszyka.Add(pozycja);
         }
 
+        // Zmniejsz dostępność
+        towar.Ilosc -= ilosc;
+
         await _context.SaveChangesAsync();
 
         return RedirectToAction("Details", "Towar", new { id = idTowaru });
@@ -80,9 +87,15 @@ public class KoszykController : Controller
     [HttpPost]
     public async Task<IActionResult> Usun(int id)
     {
-        var pozycja = await _context.PozycjaKoszyka.FindAsync(id);
+        var pozycja = await _context.PozycjaKoszyka
+            .Include(p => p.Towar)
+            .FirstOrDefaultAsync(p => p.Id == id);
+
         if (pozycja != null)
         {
+            // Zwracamy do magazynu
+            pozycja.Towar!.Ilosc += pozycja.Ilosc;
+
             _context.PozycjaKoszyka.Remove(pozycja);
             await _context.SaveChangesAsync();
         }
@@ -97,20 +110,23 @@ public class KoszykController : Controller
             .Include(p => p.Towar)
             .FirstOrDefaultAsync(p => p.Id == id);
 
-        if (pozycja == null)
+        if (pozycja == null || pozycja.Towar == null)
             return RedirectToAction("Index");
 
         if (delta > 0)
         {
-            // Sprawdź, czy nie przekracza stanu magazynowego
-            if (pozycja.Towar!.Ilosc >= (pozycja.Ilosc + delta))
+            if (pozycja.Towar.Ilosc >= delta)
             {
                 pozycja.Ilosc += delta;
+                pozycja.Towar.Ilosc -= delta;
             }
         }
         else if (delta < 0)
         {
-            pozycja.Ilosc += delta;
+            var absDelta = Math.Abs(delta);
+            pozycja.Ilosc -= absDelta;
+            pozycja.Towar.Ilosc += absDelta;
+
             if (pozycja.Ilosc <= 0)
             {
                 _context.PozycjaKoszyka.Remove(pozycja);
@@ -120,5 +136,6 @@ public class KoszykController : Controller
         await _context.SaveChangesAsync();
         return RedirectToAction("Index");
     }
+
 
 }

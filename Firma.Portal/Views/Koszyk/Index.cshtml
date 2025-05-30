@@ -37,11 +37,18 @@ else
 
                 <span>@p.Ilosc</span>
 
-                <form asp-action="ZmienIlosc" method="post">
-                    <input type="hidden" name="id" value="@p.Id" />
-                    <input type="hidden" name="delta" value="1" />
-                    <button type="submit" class="btn btn-outline-secondary btn-sm">➕</button>
-                </form>
+                @if (p.Towar?.Ilosc > 0)
+{
+    <form asp-action="ZmienIlosc" method="post">
+        <input type="hidden" name="id" value="@p.Id" />
+        <input type="hidden" name="delta" value="1" />
+        <button type="submit" class="btn btn-outline-secondary btn-sm">➕</button>
+    </form>
+}
+else
+{
+    <button class="btn btn-outline-secondary btn-sm" disabled>➕</button>
+}
             </div>
         </td>
         <td>@p.Towar?.Cena.ToString("C")</td>
