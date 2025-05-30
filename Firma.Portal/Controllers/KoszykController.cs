@@ -89,4 +89,36 @@ public class KoszykController : Controller
 
         return RedirectToAction("Index");
     }
+
+    [HttpPost]
+    public async Task<IActionResult> ZmienIlosc(int id, int delta)
+    {
+        var pozycja = await _context.PozycjaKoszyka
+            .Include(p => p.Towar)
+            .FirstOrDefaultAsync(p => p.Id == id);
+
+        if (pozycja == null)
+            return RedirectToAction("Index");
+
+        if (delta > 0)
+        {
+            // Sprawdź, czy nie przekracza stanu magazynowego
+            if (pozycja.Towar!.Ilosc >= (pozycja.Ilosc + delta))
+            {
+                pozycja.Ilosc += delta;
+            }
+        }
+        else if (delta < 0)
+        {
+            pozycja.Ilosc += delta;
+            if (pozycja.Ilosc <= 0)
+            {
+                _context.PozycjaKoszyka.Remove(pozycja);
+            }
+        }
+
+        await _context.SaveChangesAsync();
+        return RedirectToAction("Index");
+    }
+
 }
