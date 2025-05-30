@@ -1,0 +1,31 @@
+@{
+    ViewData["Title"] = "Zamówienie";
+}
+
+<h1 class="mb-4">Finalizacja zamówienia</h1>
+
+<form method="post">
+    <div class="mb-3">
+        <label for="adres" class="form-label">Adres dostawy</label>
+        <input type="text" class="form-control" name="adres" required />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Metoda płatności</label><br />
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="metodaPlatnosci" value="Przelew" checked />
+            <label class="form-check-label">Przelew</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="metodaPlatnosci" value="PayPal" />
+            <label class="form-check-label">PayPal</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="metodaPlatnosci" value="Gotówka" />
+            <label class="form-check-label">Gotówka przy odbiorze</label>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Zamawiam</button>
+    <a asp-controller="Koszyk" asp-action="Index" class="btn btn-secondary ms-2">Wróć do koszyka</a>
+</form>

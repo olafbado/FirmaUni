@@ -17,13 +17,21 @@ public class KoszykBadgeViewComponent : ViewComponent
 
     public async Task<IViewComponentResult> InvokeAsync()
     {
-        // TODO: retrive userId from claims
-        string userId = "1";
+        var userId = "1";
 
-        int count = await _context.PozycjaKoszyka
-            .Where(p => p.Koszyk!.UzytkownikId == userId)
-            .SumAsync(p => p.Ilosc);
+        if (string.IsNullOrEmpty(userId))
+        {
+            return View(0); // brak zalogowanego użytkownika = 0
+        }
 
-        return View("Default", count);
+        var koszyk = await _context.Koszyk
+            .Include(k => k.Pozycje)
+            .Where(k => k.UzytkownikId == userId && !k.CzyZamowiony)
+            .OrderByDescending(k => k.DataUtworzenia)
+            .FirstOrDefaultAsync();
+
+        var count = koszyk?.Pozycje.Sum(p => p.Ilosc) ?? 0;
+
+        return View(count);
     }
 }

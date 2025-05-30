@@ -26,7 +26,7 @@ public class KoszykController : Controller
         var koszyk = await _context.Koszyk
             .Include(k => k.Pozycje)
             .ThenInclude(p => p.Towar)
-            .FirstOrDefaultAsync(k => k.UzytkownikId == userId);
+            .FirstOrDefaultAsync(k => k.UzytkownikId == userId && !k.CzyZamowiony);
 
         return View(koszyk ?? new Koszyk { Pozycje = new List<PozycjaKoszyka>() });
     }
@@ -34,38 +34,46 @@ public class KoszykController : Controller
     [HttpPost]
     public async Task<IActionResult> Dodaj(int idTowaru, int ilosc)
     {
-        var userId = GetUserId();
+        var userId = "1"; // z ClaimsPrincipal
 
         var koszyk = await _context.Koszyk
             .Include(k => k.Pozycje)
-            .FirstOrDefaultAsync(k => k.UzytkownikId == userId);
+            .FirstOrDefaultAsync(k => k.UzytkownikId == userId && !k.CzyZamowiony);
 
+        // Jeśli nie ma aktywnego koszyka → tworzymy nowy
         if (koszyk == null)
         {
             koszyk = new Koszyk
             {
                 UzytkownikId = userId,
                 DataUtworzenia = DateTime.UtcNow,
-                Pozycje = new List<PozycjaKoszyka>()
+                CzyZamowiony = false
             };
             _context.Koszyk.Add(koszyk);
+            await _context.SaveChangesAsync(); // zapis, żeby mieć IdKoszyka
         }
 
-        var istniejaca = koszyk.Pozycje.FirstOrDefault(p => p.TowarId == idTowaru);
-        if (istniejaca != null)
+        // Szukamy, czy pozycja już istnieje
+        var istniejącaPozycja = koszyk.Pozycje.FirstOrDefault(p => p.TowarId == idTowaru);
+
+        if (istniejącaPozycja != null)
         {
-            istniejaca.Ilosc += ilosc;
+            istniejącaPozycja.Ilosc += ilosc;
+            _context.Update(istniejącaPozycja);
         }
         else
         {
-            koszyk.Pozycje.Add(new PozycjaKoszyka
+            var pozycja = new PozycjaKoszyka
             {
+                KoszykId = koszyk.IdKoszyka,
                 TowarId = idTowaru,
                 Ilosc = ilosc
-            });
+            };
+            _context.PozycjaKoszyka.Add(pozycja);
         }
 
         await _context.SaveChangesAsync();
+
         return RedirectToAction("Details", "Towar", new { id = idTowaru });
     }
 

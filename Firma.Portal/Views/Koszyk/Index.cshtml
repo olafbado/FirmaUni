@@ -44,4 +44,8 @@ else
     <div class="text-end fw-bold">
         Razem: @Model.Pozycje.Sum(p => p.Ilosc * (p.Towar?.Cena ?? 0)).ToString("C")
     </div>
+
+    <a asp-controller="Zamowienie" asp-action="Nowe" class="btn btn-success mt-3">
+        🧾 Przejdź do zamówienia
+    </a>
 }

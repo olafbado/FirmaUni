@@ -1,8 +1,15 @@
-@model int
-
-<a asp-controller="Koszyk" asp-action="Index" class="btn btn-outline-light position-relative">
-    <i class="bi bi-cart"></i>
-    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-        @Model
-    </span>
-</a>
+@if (Model > 0)
+{
+    <a asp-controller="Koszyk" asp-action="Index" class="nav-link position-relative">
+        <i class="bi bi-cart3 fs-5"></i>
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            @Model
+        </span>
+    </a>
+}
+else
+{
+    <a asp-controller="Koszyk" asp-action="Index" class="nav-link">
+        <i class="bi bi-cart3 fs-5"></i>
+    </a>
+}
