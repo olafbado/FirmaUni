@@ -77,3 +77,21 @@ This command applies all pending migrations and creates the database if it doesn
 
 Add migraion: > dotnet ef migrations add UpdateZamowinie --project Firma.Data --startup-project Firma.Intranet
 Run migration: > dotnet ef database update --project Firma.Data --startup-project Firma.Intranet
+
+✅ Zadanie 1 – Obsługa minimum 6 klas w projekcie Portal WWW
+
+1. Towar – model produktu wyświetlany na liście i szczegółach
+2. Rodzaj – kategorie produktów, wykorzystywane w filtrach
+3. Koszyk – reprezentacja koszyka użytkownika
+4. PozycjaKoszyka – relacja produkt–ilość w koszyku
+5. Zamowienie – dane zamówienia składane przez użytkownika
+6. PozycjaZamowienia – szczegóły produktów przypisanych do zamówienia
+7. Uzytkownik – podstawowy model użytkownika
+
+✅ Zadanie 2 – Profesjonalny i dopracowany wygląd widoków
+
+1. Strona główna sklepu (/Sklep) - Filtrowanie, paginacja, responsywne karty, estetyczne zdjęcia
+2. Szczegóły produktu (/Towar/Details/{id}) - Przejrzysty layout, wyraźne CTA, podobne produkty
+3. Koszyk (/Koszyk/Index) - Czytelna tabela, suma, przycisk do zamówienia
+4. Zamówienie (/Zamowienie/Nowe) - Formularz zamówienia z walidacją i designem
+5. Nawigacja - Komponent z ikoną koszyka + badge + live update
