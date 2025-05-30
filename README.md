@@ -1,9 +1,9 @@
 # Run app
+
 cd Firma.Intranet
 dotnet clean && dotnet build && dotnet watch run
 cd ../Firma.Portal
 dotnet clean && dotnet build && dotnet watch run
-
 
 # Asynchroniczność i wątki w ASP.NET Core (async/await)
 
@@ -19,7 +19,6 @@ Asynchroniczność pozwala na bardziej efektywne wykorzystanie zasobów serwera,
 - **Wątki wykonują konkretne zadania** w obrębie danego procesu.
 - Dzięki wielu wątkom aplikacja może robić wiele rzeczy jednocześnie – np. obsługiwać wielu użytkowników na raz.
 
-
 ## ✅ Kluczowe założenia
 
 - `async/await` pozwala wykonać operację (np. zapytanie do bazy danych) **bez blokowania** aktualnego wątku.
@@ -30,12 +29,12 @@ Asynchroniczność pozwala na bardziej efektywne wykorzystanie zasobów serwera,
 
 ## 💡 Przykład praktyczny
 
-```csharp
+````csharp
 public async Task<IActionResult> Index()
 {
     var towarList = await _context.Towar.Include(t => t.Rodzaj).ToListAsync();
     return View(towarList);
-} 
+}
 
 
 ## 🔄 Porównanie przepływu requesta: Phoenix (Elixir) vs ASP.NET Core MVC
@@ -66,6 +65,15 @@ Jeśli znasz Phoenix, to oto jak możesz zrozumieć ASP.NET Core MVC przez analo
 
 
 # MIGRAIONS
+Drop database:
+> dotnet ef database drop --project Firma.Data --startup-project Firma.Intranet
+# Create database
+
+```bash
+dotnet ef database update --project Firma.Data --startup-project Firma.Intranet
+````
+
+This command applies all pending migrations and creates the database if it doesn't exist.
+
 Add migraion: > dotnet ef migrations add UpdateZamowinie --project Firma.Data --startup-project Firma.Intranet
 Run migration: > dotnet ef database update --project Firma.Data --startup-project Firma.Intranet
-
