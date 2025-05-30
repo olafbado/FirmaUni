@@ -1,0 +1,11 @@
+@model IEnumerable<Firma.Data.Data.CMS.Strona>
+
+@foreach (var strona in Model)
+{
+    <li class="nav-item">
+        <a class="nav-link @(Context.Request.Path == $"/strona/{strona.LinkTytul}" ? "active" : "")"
+           asp-controller="Strona" asp-action="Pokaz" asp-route-id="@strona.LinkTytul">
+            @strona.Tytul
+        </a>
+    </li>
+}
