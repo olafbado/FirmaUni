@@ -58,19 +58,10 @@ public class StronaController : Controller
 
         if (ModelState.IsValid)
         {
-            try
-            {
-                _context.Update(strona);
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!_context.Strona.Any(e => e.IdStrony == id))
-                    return NotFound();
-                else
-                    throw;
-            }
+            _context.Update(strona);
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+
         }
         return View(strona);
     }
