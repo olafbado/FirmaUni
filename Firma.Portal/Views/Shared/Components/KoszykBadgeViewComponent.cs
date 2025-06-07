@@ -21,7 +21,7 @@ public class KoszykBadgeViewComponent : ViewComponent
 
         if (string.IsNullOrEmpty(userId))
         {
-            return View(0); // brak zalogowanego użytkownika = 0
+            return View(0);
         }
 
         var koszyk = await _context.Koszyk

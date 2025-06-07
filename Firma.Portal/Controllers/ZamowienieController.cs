@@ -23,7 +23,7 @@ public class ZamowienieController : Controller
     [HttpPost]
     public async Task<IActionResult> Nowe(string adres, string metodaPlatnosci)
     {
-        var userId = "1"; // w praktyce: z ClaimsPrincipal
+        var userId = "1";
         var koszyk = await _context.Koszyk
             .Include(k => k.Pozycje)
             .ThenInclude(p => p.Towar)
@@ -48,12 +48,10 @@ public class ZamowienieController : Controller
         _context.Zamowienie.Add(zamowienie);
         await _context.SaveChangesAsync();
 
-        // oznacz koszyk jako zamówiony PRZED zapisaniem zamówienia
         koszyk.CzyZamowiony = true;
 
         _context.Koszyk.Update(koszyk);
 
-        // dodaj pozycje zamówienia
         foreach (var poz in koszyk.Pozycje)
         {
             var pozycjaZamowienia = new PozycjaZamowienia

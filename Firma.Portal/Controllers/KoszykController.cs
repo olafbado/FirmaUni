@@ -17,7 +17,7 @@ public class KoszykController : Controller
 
     private string GetUserId()
     {
-        return User.FindFirstValue(ClaimTypes.NameIdentifier) ?? "1"; // tymczasowo "anonim" jeśli bez auth
+        return User.FindFirstValue(ClaimTypes.NameIdentifier) ?? "1";
     }
 
     public async Task<IActionResult> Index()
@@ -76,7 +76,6 @@ public class KoszykController : Controller
             _context.PozycjaKoszyka.Add(pozycja);
         }
 
-        // Zmniejsz dostępność
         towar.Ilosc -= ilosc;
 
         await _context.SaveChangesAsync();
@@ -93,7 +92,6 @@ public class KoszykController : Controller
 
         if (pozycja != null)
         {
-            // Zwracamy do magazynu
             pozycja.Towar!.Ilosc += pozycja.Ilosc;
 
             _context.PozycjaKoszyka.Remove(pozycja);
