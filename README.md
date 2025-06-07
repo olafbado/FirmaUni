@@ -95,3 +95,7 @@ Run migration: > dotnet ef database update --project Firma.Data --startup-projec
 3. Koszyk (/Koszyk/Index) - Czytelna tabela, suma, przycisk do zamówienia
 4. Zamówienie (/Zamowienie/Nowe) - Formularz zamówienia z walidacją i designem
 5. Nawigacja - Komponent z ikoną koszyka + badge + live update
+
+✅ Zadanie 3 – Sterowanie tekstami
+
+W Portal WWW skupilem sie na kompletnym procesie uzytkownika, od wyswietlenia produktow, przez dodanie ich do koszyka po zlozenie zamowienia.
