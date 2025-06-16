@@ -99,3 +99,8 @@ Run migration: > dotnet ef database update --project Firma.Data --startup-projec
 ✅ Zadanie 3 – Sterowanie tekstami
 
 W Portal WWW skupilem sie na kompletnym procesie uzytkownika, od wyswietlenia produktow, przez dodanie ich do koszyka po zlozenie zamowienia.
+
+Zadanie 4
+
+-Portal wpełni responsywny na urządzeniach mobilnych (2pkt)
+-Sterowanie wyglądem i stylami css Portalu przez Intranet, (2pkt)

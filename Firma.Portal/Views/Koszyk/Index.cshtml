@@ -12,57 +12,59 @@
 }
 else
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Produkt</th>
-                <th>Ilość</th>
-                <th>Cena jednostkowa</th>
-                <th>Wartość</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var p in Model.Pozycje)
-{
-    <tr>
-        <td>@p.Towar?.Nazwa</td>
-        <td>
-            <div class="d-flex align-items-center gap-2">
-                <form asp-action="ZmienIlosc" method="post">
-                    <input type="hidden" name="id" value="@p.Id" />
-                    <input type="hidden" name="delta" value="-1" />
-                    <button type="submit" class="btn btn-outline-secondary btn-sm">➖</button>
-                </form>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Produkt</th>
+                    <th>Ilość</th>
+                    <th>Cena jednostkowa</th>
+                    <th>Wartość</th>
+                    <th>Akcja</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in Model.Pozycje)
+                {
+                    <tr>
+                        <td>@p.Towar?.Nazwa</td>
+                        <td>
+                            <div class="d-flex align-items-center gap-2">
+                                <form asp-action="ZmienIlosc" method="post">
+                                    <input type="hidden" name="id" value="@p.Id" />
+                                    <input type="hidden" name="delta" value="-1" />
+                                    <button type="submit" class="btn btn-outline-secondary btn-sm">➖</button>
+                                </form>
 
-                <span>@p.Ilosc</span>
+                                <span>@p.Ilosc</span>
 
-                @if (p.Towar?.Ilosc > 0)
-{
-    <form asp-action="ZmienIlosc" method="post">
-        <input type="hidden" name="id" value="@p.Id" />
-        <input type="hidden" name="delta" value="1" />
-        <button type="submit" class="btn btn-outline-secondary btn-sm">➕</button>
-    </form>
-}
-else
-{
-    <button class="btn btn-outline-secondary btn-sm" disabled>➕</button>
-}
-            </div>
-        </td>
-        <td>@p.Towar?.Cena.ToString("C")</td>
-        <td>@(((p.Towar?.Cena ?? 0) * p.Ilosc).ToString("C"))</td>
-        <td>
-            <form asp-action="Usun" method="post">
-                <input type="hidden" name="id" value="@p.Id" />
-                <button type="submit" class="btn btn-danger btn-sm">🗑 Usuń</button>
-            </form>
-        </td>
-    </tr>
-}
-        </tbody>
-    </table>
+                                @if (p.Towar?.Ilosc > 0)
+                                {
+                                    <form asp-action="ZmienIlosc" method="post">
+                                        <input type="hidden" name="id" value="@p.Id" />
+                                        <input type="hidden" name="delta" value="1" />
+                                        <button type="submit" class="btn btn-outline-secondary btn-sm">➕</button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <button class="btn btn-outline-secondary btn-sm" disabled>➕</button>
+                                }
+                            </div>
+                        </td>
+                        <td>@p.Towar?.Cena.ToString("C")</td>
+                        <td>@(((p.Towar?.Cena ?? 0) * p.Ilosc).ToString("C"))</td>
+                        <td>
+                            <form asp-action="Usun" method="post">
+                                <input type="hidden" name="id" value="@p.Id" />
+                                <button type="submit" class="btn btn-danger btn-sm">🗑 Usuń</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 
     <div class="text-end fw-bold">
         Razem: @Model.Pozycje.Sum(p => p.Ilosc * (p.Towar?.Cena ?? 0)).ToString("C")
